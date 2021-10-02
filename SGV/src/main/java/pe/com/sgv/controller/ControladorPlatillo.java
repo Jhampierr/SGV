@@ -20,40 +20,58 @@ public class ControladorPlatillo {
     private PlatilloService platilloService;
     
     @GetMapping("/")
-    public String inicio(Model model){
+    public String inicio(){
+        /*var platillos = platilloService.listarPlatillos();
+        
+        log.info("Ejecutando el controlador Spring MVC");
+        model.addAttribute("platillos", platillos);*/
+        
+        return "index";
+    }
+
+    @GetMapping("/platillo")
+    public String platillo(Model model){
         var platillos = platilloService.listarPlatillos();
         
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("platillos", platillos);
-        
-        return "index";
+        return "platilloSEL";
     }
     
     @GetMapping("/agregar")
     public String agregar(Platillo platillo){
-        return "modificar";
+        return "platilloUPD";
     }
     
     @PostMapping("/guardar")
-    public String guardar(@Valid Platillo platillo, Errors errores){
+    public String guardar(@Valid Platillo platillo, Errors errores, Model model){
         if(errores.hasErrors()){
-            return "modificar";
+            return "platilloUPD";
         }
         
         platilloService.guardar(platillo);
-        return "redirect:/";
+        var platillos = platilloService.listarPlatillos();
+        
+        log.info("Ejecutando el controlador Spring MVC");
+        model.addAttribute("platillos", platillos);
+        return "platilloSEL";
     }
     
     @GetMapping("/editar/{idPlatillo}")
     public String editar(Platillo platillo, Model model){
        platillo = platilloService.encontrarPlatillo(platillo);
        model.addAttribute("platillo", platillo);
-       return "modificar";
+       return "platilloUPD";
     }
     @GetMapping("/eliminar")
-    public String eliminar(Platillo platillo){
+    public String eliminar(Platillo platillo, Model model){
+        
         platilloService.eliminar(platillo);
-        return "redirect:/";
+        var platillos = platilloService.listarPlatillos();
+        
+        log.info("Ejecutando el controlador Spring MVC");
+        model.addAttribute("platillos", platillos);
+        return "platilloSEL";
     }
     
 }

@@ -4,6 +4,7 @@ package pe.com.sgv.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -22,7 +23,7 @@ public class Bebida implements Serializable{
     @NotEmpty
     private String nombre;
     
-    @NotEmpty
+    @NotNull
     private double precio;
     
     @NotEmpty
