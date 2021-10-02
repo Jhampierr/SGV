@@ -18,16 +18,6 @@ public class ControladorPlatillo {
    
     @Autowired
     private PlatilloService platilloService;
-    
-    @GetMapping("/")
-    public String inicio(){
-        /*var platillos = platilloService.listarPlatillos();
-        
-        log.info("Ejecutando el controlador Spring MVC");
-        model.addAttribute("platillos", platillos);*/
-        
-        return "index";
-    }
 
     @GetMapping("/platillo")
     public String platillo(Model model){
@@ -38,12 +28,12 @@ public class ControladorPlatillo {
         return "platilloSEL";
     }
     
-    @GetMapping("/agregar")
+    @GetMapping("/agregarplatillo")
     public String agregar(Platillo platillo){
         return "platilloUPD";
     }
     
-    @PostMapping("/guardar")
+    @PostMapping("/guardarplatillo")
     public String guardar(@Valid Platillo platillo, Errors errores, Model model){
         if(errores.hasErrors()){
             return "platilloUPD";
@@ -57,13 +47,13 @@ public class ControladorPlatillo {
         return "platilloSEL";
     }
     
-    @GetMapping("/editar/{idPlatillo}")
+    @GetMapping("/editarplatillo/{idPlatillo}")
     public String editar(Platillo platillo, Model model){
        platillo = platilloService.encontrarPlatillo(platillo);
        model.addAttribute("platillo", platillo);
        return "platilloUPD";
     }
-    @GetMapping("/eliminar")
+    @GetMapping("/eliminarplatillo")
     public String eliminar(Platillo platillo, Model model){
         
         platilloService.eliminar(platillo);

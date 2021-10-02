@@ -7,7 +7,7 @@
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <a th:href="@{/agregar}">[[#{platillo.crear}]]</a>
+        <a th:href="@{/agregarplatillo}">[[#{platillo.crear}]]</a>
         <div th:if="${platillos != null and !platillos.empty}">
             <table border="1">
                 <tr>
@@ -22,8 +22,8 @@
                     <td th:text="${platillo.nombre}">Mostrar Nombre</td>
                     <td th:text="${platillo.precio}">Mostrar Precio</td>
                     <td th:text="${platillo.categoria}">Mostrar Categoria</td>
-                    <td><a th:href="@{/editar/} + ${platillo.idPlatillo}"/>[[#{accion.editar}]]</td>
-                    <td><a th:href="@{/eliminar(idPlatillo=${platillo.idPlatillo})}"/>[[#{accion.eliminar}]]</td>
+                    <td><a th:href="@{/editarplatillo/} + ${platillo.idPlatillo}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminarplatillo(idPlatillo=${platillo.idPlatillo})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

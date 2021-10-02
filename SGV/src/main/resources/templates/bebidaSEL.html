@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Bebidas</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregarbebida}">[[#{bebida.crear}]]</a>
+        <div th:if="${bebidas != null and !bebidas.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{bebida.nombre}]]</th>
+                    <th>[[#{bebida.precio}]]</th>
+                    <th>[[#{bebida.categoria}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="bebida : ${bebidas}">
+                    <td th:text="${bebida.nombre}">Mostrar Nombre</td>
+                    <td th:text="${bebida.precio}">Mostrar Precio</td>
+                    <td th:text="${bebida.categoria}">Mostrar Categoria</td>
+                    <td><a th:href="@{/editarbebida/} + ${bebida.idBebida}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminarbebida(idBebida=${bebida.idBebida})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${bebidas == null or bebidas.empty}">
+            [[#{bebida.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

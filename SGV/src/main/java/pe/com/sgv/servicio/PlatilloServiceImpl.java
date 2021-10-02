@@ -10,7 +10,7 @@ import pe.com.sgv.model.Platillo;
 
 @Service
 public class PlatilloServiceImpl implements PlatilloService{
-
+    
     @Autowired
     private PlatilloDao platilloDao;
     
@@ -19,19 +19,19 @@ public class PlatilloServiceImpl implements PlatilloService{
     public List<Platillo> listarPlatillos() {
         return (List<Platillo>) platilloDao.findAll();
     }
-
+    
     @Override
     @Transactional
     public void guardar(Platillo platillo) {
         platilloDao.save(platillo);
     }
-
+    
     @Override
     @Transactional
     public void eliminar(Platillo platillo) {
         platilloDao.delete(platillo);
     }
-
+    
     @Override
     @Transactional(readOnly = true)
     public Platillo encontrarPlatillo(Platillo platillo) {
