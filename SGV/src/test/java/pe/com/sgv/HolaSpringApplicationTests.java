@@ -1,4 +1,4 @@
-package pe.com.jp;
+package pe.com.sgv;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

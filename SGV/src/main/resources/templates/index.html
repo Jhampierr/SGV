@@ -7,30 +7,28 @@
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <a th:href="@{/agregar}">[[#{persona.crear}]]</a>
-        <div th:if="${personas != null and !personas.empty}">
+        <a th:href="@{/agregar}">[[#{platillo.crear}]]</a>
+        <div th:if="${platillos != null and !platillos.empty}">
             <table border="1">
                 <tr>
-                    <th>[[#{persona.nombre}]]</th>
-                    <th>[[#{persona.apellido}]]</th>
-                    <th>[[#{persona.email}]]</th>
-                    <th>[[#{persona.telefono}]]</th>
+                    <th>[[#{platillo.nombre}]]</th>
+                    <th>[[#{platillo.precio}]]</th>
+                    <th>[[#{platillo.categoria}]]</th>
                     <th>[[#{accion.editar}]]</th>
                     <th>[[#{accion.eliminar}]]</th>
                 </tr>
 
-                <tr th:each="persona : ${personas}">
-                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
-                    <td th:text="${persona.apellido}">Mostrar Apellido</td>
-                    <td th:text="${persona.email}">Mostrar Email</td>
-                    <td th:text="${persona.telefono}">Mostrar Telefono</td>
-                    <td><a th:href="@{/editar/} + ${persona.idPersona}"/>[[#{accion.editar}]]</td>
-                    <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}"/>[[#{accion.eliminar}]]</td>
+                <tr th:each="platillo : ${platillos}">
+                    <td th:text="${platillo.nombre}">Mostrar Nombre</td>
+                    <td th:text="${platillo.precio}">Mostrar Precio</td>
+                    <td th:text="${platillo.categoria}">Mostrar Categoria</td>
+                    <td><a th:href="@{/editar/} + ${platillo.idPlatillo}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminar(idPlatillo=${platillo.idPlatillo})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>
-        <div th:if="${personas == null or personas.empty}">
-            [[#{persona.lista-vacia}]]
+        <div th:if="${platillos == null or platillos.empty}">
+            [[#{platillo.lista-vacia}]]
         </div>
         
         <footer th:replace="layout/plantilla :: footer"></footer>

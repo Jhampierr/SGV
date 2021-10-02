@@ -1,5 +1,5 @@
 
-package pe.com.jp.web;
+package pe.com.sgv.controller;
 
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -9,50 +9,50 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pe.com.jp.domain.Persona;
-import pe.com.jp.servicio.PersonaService;
+import pe.com.sgv.model.Platillo;
+import pe.com.sgv.servicio.PlatilloService;
 
 @Controller
 @Slf4j
-public class ControladorInicio {
+public class ControladorPlatillo {
    
     @Autowired
-    private PersonaService personaService;
+    private PlatilloService platilloService;
     
     @GetMapping("/")
     public String inicio(Model model){
-        var personas = personaService.listarPersonas();
+        var platillos = platilloService.listarPlatillos();
         
         log.info("Ejecutando el controlador Spring MVC");
-        model.addAttribute("personas", personas);
+        model.addAttribute("platillos", platillos);
         
         return "index";
     }
     
     @GetMapping("/agregar")
-    public String agregar(Persona persona){
+    public String agregar(Platillo platillo){
         return "modificar";
     }
     
     @PostMapping("/guardar")
-    public String guardar(@Valid Persona persona, Errors errores){
+    public String guardar(@Valid Platillo platillo, Errors errores){
         if(errores.hasErrors()){
             return "modificar";
         }
         
-        personaService.guardar(persona);
+        platilloService.guardar(platillo);
         return "redirect:/";
     }
     
-    @GetMapping("/editar/{idPersona}")
-    public String editar(Persona persona, Model model){
-       persona = personaService.encontrarPersona(persona);
-       model.addAttribute("persona", persona);
+    @GetMapping("/editar/{idPlatillo}")
+    public String editar(Platillo platillo, Model model){
+       platillo = platilloService.encontrarPlatillo(platillo);
+       model.addAttribute("platillo", platillo);
        return "modificar";
     }
     @GetMapping("/eliminar")
-    public String eliminar(Persona persona){
-        personaService.eliminar(persona);
+    public String eliminar(Platillo platillo){
+        platilloService.eliminar(platillo);
         return "redirect:/";
     }
     

@@ -1,5 +1,5 @@
 
-package pe.com.jp.web;
+package pe.com.sgv.controller;
 
 import java.util.Locale;
 import org.springframework.context.annotation.Bean;

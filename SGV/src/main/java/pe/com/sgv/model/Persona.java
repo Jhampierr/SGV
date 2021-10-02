@@ -1,5 +1,5 @@
 
-package pe.com.jp.domain;
+package pe.com.sgv.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

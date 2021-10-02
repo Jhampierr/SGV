@@ -3,33 +3,30 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Datos de la Persona</title>
+        <title>Datos de la Platillo</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <h2>[[#{persona.formulario}]]</h2>
+        <h2>[[#{platillo.formulario}]]</h2>
         
         <a th:href="@{/}">[[#{accion.regresar}]]</a>
         <br/>
-        <form th:action="@{/guardar}" method="post" th:object="${persona}">
-            <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+        <form th:action="@{/guardar}" method="post" th:object="${platillo}">
+            <input type="hidden" name="idPlatillo" th:field="*{idPlatillo}"/>
             <br/>
-            <label for="nombre">[[#{persona.nombre}]]: </label>
+            <label for="nombre">[[#{platillo.nombre}]]: </label>
             <input type="text" name="nombre" th:field="*{nombre}"/>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
             <br/>
-            <label for="apellido">[[#{persona.apellido}]]: </label>
-            <input type="text" name="apellido" th:field="*{apellido}"/>
-            <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido:</span>
+            <label for="precio">[[#{platillo.precio}]]: </label>
+            <input type="number" name="precio" th:field="*{precio}"/>
+            <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
             <br/>
-            <label for="email">[[#{persona.email}]]: </label>
-            <input type="text" name="email" th:field="*{email}"/>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error Email:</span>
-            <br/>
-            <label for="telefono">[[#{persona.telefono}]]: </label>
-            <input type="tel" name="telefono" th:field="*{telefono}"/>
+            <label for="categoria">[[#{platillo.categoria}]]: </label>
+            <input type="text" name="categoria" th:field="*{categoria}"/>
+            <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}">Error Categoria:</span>
             <br/>
             <input type="submit" name="guardar" th:value="#{accion.guardar}"/>
         </form>
