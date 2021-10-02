@@ -20,7 +20,7 @@
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
             <br/>
             <label for="precio">[[#{bebida.precio}]]: </label>
-            <input type="number" name="precio" th:field="*{precio}"/>
+            <input  name="precio" th:field="*{precio}"/>
             <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
             <br/>
             <label for="categoria">[[#{bebida.categoria}]]: </label>
