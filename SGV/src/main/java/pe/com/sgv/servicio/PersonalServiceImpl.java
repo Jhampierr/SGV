@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.com.sgv.dao.PersonalDao;
-import pe.com.sgv.model.Personal;
+import pe.com.sgv.model.Empleado;
 
 @Service
 public class PersonalServiceImpl implements PersonalService{
@@ -16,25 +16,25 @@ public class PersonalServiceImpl implements PersonalService{
     
     @Override
     @Transactional(readOnly = true)
-    public List<Personal> listarPersonal() {
-        return (List<Personal>) personalDao.findAll();
+    public List<Empleado> listarPersonal() {
+        return (List<Empleado>) personalDao.findAll();
     }
 
     @Override
     @Transactional
-    public void guardar(Personal personal) {
+    public void guardar(Empleado personal) {
         personalDao.save(personal);
     }
 
     @Override
     @Transactional
-    public void eliminar(Personal personal) {
+    public void eliminar(Empleado personal) {
         personalDao.delete(personal);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Personal encontrarPersonal(Personal personal) {
+    public Empleado encontrarPersonal(Empleado personal) {
         return personalDao.findById(personal.getIdPersonal()).orElse(null);
     }
     

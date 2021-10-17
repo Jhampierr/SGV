@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pe.com.sgv.model.Personal;
+import pe.com.sgv.model.Empleado;
 import pe.com.sgv.servicio.PersonalService;
 
 @Controller
@@ -29,12 +29,12 @@ public class ControladorPersonal {
     }
     
     @GetMapping("/agregarpersonal")
-    public String agregar(Personal personal){
+    public String agregar(Empleado personal){
         return "personalUPD";
     }
     
     @PostMapping("/guardarpersonal")
-    public String guardar(@Valid Personal personal, Errors errores, Model model){
+    public String guardar(@Valid Empleado personal, Errors errores, Model model){
         if(errores.hasErrors()){
             return "personalUPD";
         }
@@ -49,13 +49,13 @@ public class ControladorPersonal {
     }
     
     @GetMapping("/editarpersonal/{idPersonal}")
-    public String editar(Personal personal, Model model){
+    public String editar(Empleado personal, Model model){
        personal = personalService.encontrarPersonal(personal);
        model.addAttribute("personal", personal);
        return "personalUPD";
     }
     @GetMapping("/eliminarpersonal")
-    public String eliminar(Personal personal, Model model){
+    public String eliminar(Empleado personal, Model model){
         
         personalService.eliminar(personal);
         this.personal(model);
