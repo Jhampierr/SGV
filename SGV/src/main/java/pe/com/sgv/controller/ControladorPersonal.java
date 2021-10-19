@@ -10,14 +10,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pe.com.sgv.model.Empleado;
-import pe.com.sgv.servicio.PersonalService;
+import pe.com.sgv.servicio.EmpleadoService;
 
 @Controller
 @Slf4j
 public class ControladorPersonal {
    
     @Autowired
-    private PersonalService personalService;
+    private EmpleadoService personalService;
     
     @GetMapping("/personal")
     public String personal(Model model){
