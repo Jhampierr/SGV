@@ -19,18 +19,12 @@ public class Empleado extends Persona implements Serializable {
     private Long idEmpleado;
     
     @NotEmpty
-    private String user;    
-    
-    @NotEmpty
-    private String clave;
-       
-    @NotEmpty
     private String fechaIngreso;
     
     @NotEmpty
     private TipoEmpleado tipoEmp;
     
-   private String usuarioInsert;
+    private String usuarioInsert;
     private String fechaInsert;
     private String usuarioUpdate;
     private String fechaUpdate;

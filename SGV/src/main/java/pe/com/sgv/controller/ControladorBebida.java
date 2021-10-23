@@ -9,14 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pe.com.sgv.model.Bebida;
-import pe.com.sgv.servicio.BebidaService;
+//import pe.com.sgv.model.Bebida;
+//import pe.com.sgv.servicio.BebidaService;
 
 @Controller
 @Slf4j
 public class ControladorBebida {
    
-    @Autowired
+    /*@Autowired
     private BebidaService bebidaService;
     
     @GetMapping("/bebida")
@@ -62,6 +62,6 @@ public class ControladorBebida {
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("bebidas", bebidas);
         return "bebidaSEL";
-    }
+    }*/
     
 }

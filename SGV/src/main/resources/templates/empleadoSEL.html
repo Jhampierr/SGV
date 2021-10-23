@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Empleado</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregarempleado}">[[#{empleado.crear}]]</a>
+        <div th:if="${empleado != null and !empleado.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{empleado.dni}]]</th>
+                    <th>[[#{empleado.nombre}]]</th>
+                    <th>[[#{empleado.apellido}]]</th>
+                    <th>[[#{empleado.telefono}]]</th>
+                    <th>[[#{empleado.correo}]]</th>
+                    <th>[[#{empleado.direccion}]]</th>
+                    <th>[[#{empleado.fechaIngreso}]]</th>
+                    <th>[[#{empleado.tipoEmp}]]</th>
+                    <th>[[#{empleado.usuarioInsert}]]</th>
+                    <th>[[#{empleado.fechaInsert}]]</th>
+                    <th>[[#{empleado.usuarioUpdate}]]</th>
+                    <th>[[#{empleado.fechaUpdate}]]</th>
+                    <th>[[#{empleado.usuarioDelete}]]</th>
+                    <th>[[#{empleado.fechaDelete}]]</th>
+                    <th>[[#{empleado.hostName}]]</th>
+                    <th>[[#{empleado.ip}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="empleado : ${empleado}">
+                    <td th:text="${empleado.dni}">Mostrar Dni</td>
+                    <td th:text="${empleado.nombre}">Mostrar Nombre</td>
+                    <td th:text="${empleado.apellido}">Mostrar Apellido</td>
+                    <td th:text="${empleado.telefono}">Mostrar Telefono</td>
+                    <td th:text="${empleado.correo}">Mostrar Correo</td>
+                    <td th:text="${empleado.direccion}">Mostrar Direccion</td>
+                    <td th:text="${empleado.fechaIngreso}">Mostrar Fecha Ingreso</td>
+                    <td th:text="${empleado.tipoEmp}">Mostrar Tipo de Empleado</td>
+                    <td th:text="${empleado.usuarioInsert}">Mostrar Usuario Insert</td>
+                    <td th:text="${empleado.fechaInsert}">Mostrar Fecha Insert</td>
+                    <td th:text="${empleado.usuarioUpdate}">Mostrar Usuario Update</td>
+                    <td th:text="${empleado.fechaUpdate}">Mostrar Fecha Update</td>
+                    <td th:text="${empleado.usuarioDelete}">Mostrar Usuario Delete</td>
+                    <td th:text="${empleado.fechaDelete}">Mostrar Fecha Delete</td>
+                    <td th:text="${empleado.hostName}">Mostrar Host Name</td>
+                    <td th:text="${empleado.ip}">Mostrar IP</td>
+                    <td><a th:href="@{/editarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminarempleado(idEmpleado=${empleado.idEmpleado})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${empleado == null or empleado.empty}">
+            [[#{empleado.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>
