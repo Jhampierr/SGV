@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tipo Empleado</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregartipoEmpleado}">[[#{tipoEmpleado.crear}]]</a>
+        <div th:if="${tipoEmpleado != null and !tipoEmpleado.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{tipoEmpleado.descripcion}]]</th>
+                    <th>[[#{tipoEmpleado.usuarioInsert}]]</th>
+                    <th>[[#{tipoEmpleado.fechaInsert}]]</th>
+                    <th>[[#{tipoEmpleado.usuarioUpdate}]]</th>
+                    <th>[[#{tipoEmpleado.fechaUpdate}]]</th>
+                    <th>[[#{tipoEmpleado.usuarioDelete}]]</th>
+                    <th>[[#{tipoEmpleado.fechaDelete}]]</th>
+                    <th>[[#{tipoEmpleado.hostName}]]</th>
+                    <th>[[#{tipoEmpleado.ip}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="tipoEmpleado : ${tipoEmpleado}">
+                    <td th:text="${tipoEmpleado.descripcion}">Mostrar Dni</td>
+                    <td th:text="${tipoEmpleado.usuarioInsert}">Mostrar Usuario Insert</td>
+                    <td th:text="${tipoEmpleado.fechaInsert}">Mostrar Fecha Insert</td>
+                    <td th:text="${tipoEmpleado.usuarioUpdate}">Mostrar Usuario Update</td>
+                    <td th:text="${tipoEmpleado.fechaUpdate}">Mostrar Fecha Update</td>
+                    <td th:text="${tipoEmpleado.usuarioDelete}">Mostrar Usuario Delete</td>
+                    <td th:text="${tipoEmpleado.fechaDelete}">Mostrar Fecha Delete</td>
+                    <td th:text="${tipoEmpleado.hostName}">Mostrar Host Name</td>
+                    <td th:text="${tipoEmpleado.ip}">Mostrar IP</td>
+                    <td><a th:href="@{/editartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminartipoEmpleado(idTipoEmpleado=${tipoEmpleado.idTipoEmpleado})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${tipoEmpleado == null or tipoEmpleado.empty}">
+            [[#{tipoEmpleado.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

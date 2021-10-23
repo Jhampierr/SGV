@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import pe.com.sgv.model.CheckIP;
 import pe.com.sgv.model.Empleado;
 import pe.com.sgv.servicio.EmpleadoService;
 
@@ -34,10 +35,13 @@ public class ControladorEmpleado {
     }
     
     @PostMapping("/guardarempleado")
-    public String guardar(@Valid Empleado empleado, Errors errores, Model model){
+    public String guardar(@Valid Empleado empleado, Errors errores, Model model, CheckIP check){
         if(errores.hasErrors()){
             return "empleadoUPD";
         }
+        
+        empleado.setHostName(check.host().getHostName());
+        empleado.setIp(check.host().getHostAddress());
         
         empleadoService.guardar(empleado);
         this.empleado(model);

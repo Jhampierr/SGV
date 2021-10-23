@@ -3,42 +3,54 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Datos del Personal</title>
+        <title>Datos del Empleado</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <h2>[[#{personal.formulario}]]</h2>
+        <h2>[[#{empleado.formulario}]]</h2>
         
         <br/>
-        <form th:action="@{/guardarpersonal}" method="post" th:object="${personal}">
-            <input type="hidden" name="idPersonal" th:field="*{idPersonal}"/>
+        <form th:action="@{/guardarempleado}" method="post" th:object="${empleado}">
+            <input type="hidden" name="idEmpleado" th:field="*{idEmpleado}"/>
+             <br/>
+            <label for="dni">[[#{empleado.dni}]]: </label>
+            <input type="text" name="dni" th:field="*{dni}"/>
+            <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
             <br/>
-            <label for="nombre">[[#{personal.nombre}]]: </label>
+            <label for="nombre">[[#{empleado.nombre}]]: </label>
             <input type="text" name="nombre" th:field="*{nombre}"/>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
             <br/>
-            <label for="apellido">[[#{personal.apellido}]]: </label>
+            <label for="apellido">[[#{empleado.apellido}]]: </label>
             <input type="text" name="apellido" th:field="*{apellido}"/>
             <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
             <br/>
-            <label for="dni">[[#{personal.dni}]]: </label>
-            <input type="text" name="dni" th:field="*{dni}"/>
-            <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span>
+            <label for="telefono">[[#{empleado.telefono}]]: </label>
+            <input type="text" name="telefono" th:field="*{telefono}"/>
+            <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
             <br/>
-            <label for="cargo">[[#{personal.cargo}]]: </label>
-            <input type="text" name="cargo" th:field="*{cargo}"/>
-            <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}">Error Cargo</span>
+            <label for="correo">[[#{empleado.correo}]]: </label>
+            <input type="text" name="correo" th:field="*{correo}"/>
+            <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error Correo</span>
             <br/>
-            <label for="fecha_ingreso">[[#{personal.fecha_ingreso}]]: </label>
-            <input type="date" name="fecha_ingreso" th:field="*{fecha_ingreso}"/>
-            <span th:if="${#fields.hasErrors('fecha_ingreso')}" th:errors="*{fecha_ingreso}">Error fecha de ingreso</span>
+            <label for="direccion">[[#{empleado.direccion}]]: </label>
+            <input type="text" name="direccion" th:field="*{direccion}"/>
+            <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error Direccion</span>
             <br/>
-            <input type="submit" name="guardarpersonal" th:value="#{accion.guardar}"/>
+            <label for="fechaIngreso">[[#{empleado.fechaIngreso}]]: </label>
+            <input type="date" name="fechaIngreso" th:field="*{fechaIngreso}"/>
+            <span th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="*{fechaIngreso}">Error fecha de ingreso</span>
+            <br/>
+            <label for="tipoEmp">[[#{empleado.tipoEmp}]]: </label>
+            <input type="text" name="tipoEmp" th:field="*{tipoEmp}"/>
+            <span th:if="${#fields.hasErrors('tipoEmp')}" th:errors="*{tipoEmp}">Error Tipo de Empleado</span>
+            <br/>
+            <input type="submit" name="guardarempleado" th:value="#{accion.guardar}"/>
         </form>
         
-        <a th:href="@{/personal}">[[#{accion.regresar}]]</a>
+        <a th:href="@{/empleado}">[[#{accion.regresar}]]</a>
         
         <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
