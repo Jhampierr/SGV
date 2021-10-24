@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tipo Empleado</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregarcatProducto}">[[#{catProducto.crear}]]</a>
+        <div th:if="${catProducto != null and !catProducto.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{catProducto.descripcion}]]</th>
+                    <th>[[#{audi.usuarioInsert}]]</th>
+                    <th>[[#{audi.fechaInsert}]]</th>
+                    <th>[[#{audi.usuarioUpdate}]]</th>
+                    <th>[[#{audi.fechaUpdate}]]</th>
+                    <th>[[#{audi.usuarioDelete}]]</th>
+                    <th>[[#{audi.fechaDelete}]]</th>
+                    <th>[[#{audi.hostName}]]</th>
+                    <th>[[#{audi.ip}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="catProducto : ${catProducto}">
+                    <td th:text="${catProducto.descripcion}">Mostrar Descripcion</td>
+                    <td th:text="${catProducto.usuarioInsert}">Mostrar Usuario Insert</td>
+                    <td th:text="${catProducto.fechaInsert}">Mostrar Fecha Insert</td>
+                    <td th:text="${catProducto.usuarioUpdate}">Mostrar Usuario Update</td>
+                    <td th:text="${catProducto.fechaUpdate}">Mostrar Fecha Update</td>
+                    <td th:text="${catProducto.usuarioDelete}">Mostrar Usuario Delete</td>
+                    <td th:text="${catProducto.fechaDelete}">Mostrar Fecha Delete</td>
+                    <td th:text="${catProducto.hostName}">Mostrar Host Name</td>
+                    <td th:text="${catProducto.ip}">Mostrar IP</td>
+                    <td><a th:href="@{/editarcatProducto/} + ${catProducto.idCatProducto}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminarcatProducto(idCatProducto=${catProducto.idCatProducto})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${catProducto == null or catProducto.empty}">
+            [[#{catProducto.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

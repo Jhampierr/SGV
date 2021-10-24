@@ -7,15 +7,20 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-                
-            <a th:href="@{/platillo}">Lista de Platillos</a>
+            
+            <a th:href="@{/tipoProducto}">Lista de Tipo Productos</a>
             <br/>
-            <a th:href="@{/bebida}">Lista de Bebidas</a>
+            <a th:href="@{/catProducto}">Lista de Categoria Productos</a>
+            <br/>
+            <a th:href="@{/producto}">Lista de Productos</a>
+            <br/>
+            <a th:href="@{/oferta}">Lista de Ofertas</a>
+            <br/>
+            <a th:href="@{/tipoEmpleado}">Lista de Tipo Empleados</a>
             <br/>
             <a th:href="@{/empleado}">Lista de Empleados</a>
             <br/>
-            <a th:href="@{/tipoEmpleado}">Lista de Tipo Empleados</a>
-            
+                        
         <footer th:replace="layout/plantilla :: footer"></footer>
         
     </body>

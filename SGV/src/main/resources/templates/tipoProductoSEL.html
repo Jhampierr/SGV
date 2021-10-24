@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tipo Empleado</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregartipoProducto}">[[#{tipoProducto.crear}]]</a>
+        <div th:if="${tipoProducto != null and !tipoProducto.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{tipoProducto.descripcion}]]</th>
+                    <th>[[#{audi.usuarioInsert}]]</th>
+                    <th>[[#{audi.fechaInsert}]]</th>
+                    <th>[[#{audi.usuarioUpdate}]]</th>
+                    <th>[[#{audi.fechaUpdate}]]</th>
+                    <th>[[#{audi.usuarioDelete}]]</th>
+                    <th>[[#{audi.fechaDelete}]]</th>
+                    <th>[[#{audi.hostName}]]</th>
+                    <th>[[#{audi.ip}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="tipoProducto : ${tipoProducto}">
+                    <td th:text="${tipoProducto.descripcion}">Mostrar Descripcion</td>
+                    <td th:text="${tipoProducto.usuarioInsert}">Mostrar Usuario Insert</td>
+                    <td th:text="${tipoProducto.fechaInsert}">Mostrar Fecha Insert</td>
+                    <td th:text="${tipoProducto.usuarioUpdate}">Mostrar Usuario Update</td>
+                    <td th:text="${tipoProducto.fechaUpdate}">Mostrar Fecha Update</td>
+                    <td th:text="${tipoProducto.usuarioDelete}">Mostrar Usuario Delete</td>
+                    <td th:text="${tipoProducto.fechaDelete}">Mostrar Fecha Delete</td>
+                    <td th:text="${tipoProducto.hostName}">Mostrar Host Name</td>
+                    <td th:text="${tipoProducto.ip}">Mostrar IP</td>
+                    <td><a th:href="@{/editartipoProducto/} + ${tipoProducto.idTipoProducto}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminartipoProducto(idTipoProducto=${tipoProducto.idTipoProducto})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${tipoProducto == null or tipoProducto.empty}">
+            [[#{tipoProducto.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

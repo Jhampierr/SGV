@@ -2,7 +2,6 @@
 package pe.com.sgv.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -39,6 +38,7 @@ public class Empleado implements Serializable {
     
     @NotEmpty
     private String fechaIngreso;
+    
     
     //@OneToMany
     @Column(name="tipo_empleado_id_tipo_empleado")

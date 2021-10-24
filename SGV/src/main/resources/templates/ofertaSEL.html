@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Oferta</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a th:href="@{/agregaroferta}">[[#{oferta.crear}]]</a>
+        <div th:if="${oferta != null and !oferta.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{oferta.detalle}]]</th>
+                    <th>[[#{oferta.precioOferta}]]</th>
+                    <th>[[#{oferta.fechaInicio}]]</th>
+                    <th>[[#{oferta.fechaFinal}]]</th>
+                    <th>[[#{oferta.estado}]]</th>
+                    <th>[[#{oferta.producto}]]</th>
+                    <th>[[#{audi.usuarioInsert}]]</th>
+                    <th>[[#{audi.fechaInsert}]]</th>
+                    <th>[[#{audi.usuarioUpdate}]]</th>
+                    <th>[[#{audi.fechaUpdate}]]</th>
+                    <th>[[#{audi.usuarioDelete}]]</th>
+                    <th>[[#{audi.fechaDelete}]]</th>
+                    <th>[[#{audi.hostName}]]</th>
+                    <th>[[#{audi.ip}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+
+                <tr th:each="oferta : ${oferta}">
+                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
+                    <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
+                    <td th:text="${oferta.fechaInicio}">Mostrar Fecha Inicio</td>
+                    <td th:text="${oferta.fechaFinal}">Mostrar Fecha Final</td>
+                    <td th:text="${oferta.estado}">Mostrar Estado</td>
+                    <td th:text="${oferta.producto}">Mostrar Producto</td>
+                    <td th:text="${oferta.usuarioInsert}">Mostrar Usuario Insert</td>
+                    <td th:text="${oferta.fechaInsert}">Mostrar Fecha Insert</td>
+                    <td th:text="${oferta.usuarioUpdate}">Mostrar Usuario Update</td>
+                    <td th:text="${oferta.fechaUpdate}">Mostrar Fecha Update</td>
+                    <td th:text="${oferta.usuarioDelete}">Mostrar Usuario Delete</td>
+                    <td th:text="${oferta.fechaDelete}">Mostrar Fecha Delete</td>
+                    <td th:text="${oferta.hostName}">Mostrar Host Name</td>
+                    <td th:text="${oferta.ip}">Mostrar IP</td>
+                    <td><a th:href="@{/editaroferta/} + ${oferta.idOferta}"/>[[#{accion.editar}]]</td>
+                    <td><a th:href="@{/eliminaroferta(idOferta=${oferta.idOferta})}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${oferta == null or oferta.empty}">
+            [[#{oferta.lista-vacia}]]
+        </div>
+        
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

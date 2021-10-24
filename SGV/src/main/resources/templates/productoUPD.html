@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Producto</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <h2>[[#{producto.formulario}]]</h2>
+        
+        <br/>
+        <form th:action="@{/guardarproducto}" method="post" th:object="${producto}">
+            <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+            <br/>
+            <label for="nombre">[[#{producto.nombre}]]: </label>
+            <input type="text" name="nombre" th:field="*{nombre}"/>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
+            <br/>
+            <label for="precio">[[#{producto.precio}]]: </label>
+            <input type="number" name="precio" th:field="*{precio}"/>
+            <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
+            <br/>
+            <label for="detalle">[[#{producto.detalle}]]: </label>
+            <input name="detalle" th:field="*{detalle}"/>
+            <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error Detalle</span>
+            <br/>
+            <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
+            <input type="text" name="tipoProd" th:field="*{tipoProd}"/>
+            <span th:if="${#fields.hasErrors('tipoProd')}" th:errors="*{tipoProd}">Error Tipo de Producto</span>
+            <br/>
+            <label for="catProd">[[#{producto.catProd}]]: </label>
+            <input type="text" name="catProd" th:field="*{catProd}"/>
+            <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
+            <br/>
+            <input type="submit" name="guardarproducto" th:value="#{accion.guardar}"/>
+        </form>
+        
+        <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

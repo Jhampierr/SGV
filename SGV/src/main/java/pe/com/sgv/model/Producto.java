@@ -21,17 +21,21 @@ public class Producto implements Serializable {
     @NotEmpty
     private String nombre;  
     
-    @NotEmpty
+    
     private Double precio;
     
     @NotEmpty
     private String detalle; 
     
-    @NotEmpty
-    private TipoProducto tipoProd;
     
-    @NotEmpty
-    private CatProducto catProd;
+    @Column(name="tipo_producto_id_tipo_producto")
+    //private TipoProducto tipoProd;
+    private Integer tipoProd;
+    
+    
+    @Column(name="cat_producto_id_cat_producto")
+    //private CatProducto catProd;
+    private Integer catProd;
     
     private String usuarioInsert;
     private String fechaInsert;

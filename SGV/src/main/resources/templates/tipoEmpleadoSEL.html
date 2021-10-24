@@ -13,20 +13,20 @@
             <table border="1">
                 <tr>
                     <th>[[#{tipoEmpleado.descripcion}]]</th>
-                    <th>[[#{tipoEmpleado.usuarioInsert}]]</th>
-                    <th>[[#{tipoEmpleado.fechaInsert}]]</th>
-                    <th>[[#{tipoEmpleado.usuarioUpdate}]]</th>
-                    <th>[[#{tipoEmpleado.fechaUpdate}]]</th>
-                    <th>[[#{tipoEmpleado.usuarioDelete}]]</th>
-                    <th>[[#{tipoEmpleado.fechaDelete}]]</th>
-                    <th>[[#{tipoEmpleado.hostName}]]</th>
-                    <th>[[#{tipoEmpleado.ip}]]</th>
+                    <th>[[#{audi.usuarioInsert}]]</th>
+                    <th>[[#{audi.fechaInsert}]]</th>
+                    <th>[[#{audi.usuarioUpdate}]]</th>
+                    <th>[[#{audi.fechaUpdate}]]</th>
+                    <th>[[#{audi.usuarioDelete}]]</th>
+                    <th>[[#{audi.fechaDelete}]]</th>
+                    <th>[[#{audi.hostName}]]</th>
+                    <th>[[#{audi.ip}]]</th>
                     <th>[[#{accion.editar}]]</th>
                     <th>[[#{accion.eliminar}]]</th>
                 </tr>
 
                 <tr th:each="tipoEmpleado : ${tipoEmpleado}">
-                    <td th:text="${tipoEmpleado.descripcion}">Mostrar Dni</td>
+                    <td th:text="${tipoEmpleado.descripcion}">Mostrar Descripcion</td>
                     <td th:text="${tipoEmpleado.usuarioInsert}">Mostrar Usuario Insert</td>
                     <td th:text="${tipoEmpleado.fechaInsert}">Mostrar Fecha Insert</td>
                     <td th:text="${tipoEmpleado.usuarioUpdate}">Mostrar Usuario Update</td>

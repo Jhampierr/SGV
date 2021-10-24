@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos de Tipo de Empleado</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <h2>[[#{tipoProducto.formulario}]]</h2>
+        
+        <br/>
+        <form th:action="@{/guardartipoProducto}" method="post" th:object="${tipoProducto}">
+            <input type="hidden" name="idTipoProducto" th:field="*{idTipoProducto}"/>
+            <br/>
+            <label for="descripcion">[[#{tipoProducto.descripcion}]]: </label>
+            <input type="text" name="descripcion" th:field="*{descripcion}"/>
+            <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error descripcion</span>   
+            <br/>
+            <input type="submit" name="guardartipoProducto" th:value="#{accion.guardar}"/>
+        </form>
+        
+        <a th:href="@{/tipoProducto}">[[#{accion.regresar}]]</a>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
