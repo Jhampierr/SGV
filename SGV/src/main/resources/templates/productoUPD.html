@@ -8,9 +8,9 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-        
+
         <h2>[[#{producto.formulario}]]</h2>
-        
+
         <br/>
         <form th:action="@{/guardarproducto}" method="post" th:object="${producto}">
             <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
@@ -23,23 +23,37 @@
             <input type="number" name="precio" th:field="*{precio}"/>
             <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
             <br/>
+            <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
+            <select name="tipoProd" th:field="*{tipoProd}">
+                <option value="11">Gaseosa</option>
+                <option value="12">Alcoholica</option>
+                <option value="13">Natural</option>
+                <option value="14">Entrada</option>
+                <option value="15">Piqueo</option>
+                <option value="16">Marino</option>
+                <option value="17">Caliente</option>
+                <option value="18">Frio</option>
+            </select>
+            <span th:if="${#fields.hasErrors('tipoProd')}" th:errors="*{tipoProd}">Error Tipo de Producto</span>
+            <br/>
+            <label for="catProd">[[#{producto.catProd}]]: </label>
+            <select name="catProd" th:field="*{catProd}">
+                <option value="4">Bebida</option>
+                <option value="5">Platillo</option>
+                <option value="6">Postre</option>
+            </select>
+            <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
+            <br/>
             <label for="detalle">[[#{producto.detalle}]]: </label>
             <input name="detalle" th:field="*{detalle}"/>
             <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error Detalle</span>
             <br/>
-            <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
-            <input type="text" name="tipoProd" th:field="*{tipoProd}"/>
-            <span th:if="${#fields.hasErrors('tipoProd')}" th:errors="*{tipoProd}">Error Tipo de Producto</span>
-            <br/>
-            <label for="catProd">[[#{producto.catProd}]]: </label>
-            <input type="text" name="catProd" th:field="*{catProd}"/>
-            <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
-            <br/>
+            
             <input type="submit" name="guardarproducto" th:value="#{accion.guardar}"/>
         </form>
-        
+
         <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
-        
+
         <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>

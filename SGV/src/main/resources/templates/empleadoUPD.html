@@ -8,13 +8,13 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-        
+
         <h2>[[#{empleado.formulario}]]</h2>
-        
+
         <br/>
         <form th:action="@{/guardarempleado}" method="post" th:object="${empleado}">
             <input type="hidden" name="idEmpleado" th:field="*{idEmpleado}"/>
-             <br/>
+            <br/>
             <label for="dni">[[#{empleado.dni}]]: </label>
             <input type="text" name="dni" th:field="*{dni}"/>
             <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
@@ -44,14 +44,17 @@
             <span th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="*{fechaIngreso}">Error fecha de ingreso</span>
             <br/>
             <label for="tipoEmp">[[#{empleado.tipoEmp}]]: </label>
-            <input type="text" name="tipoEmp" th:field="*{tipoEmp}"/>
+            <select name="tipoEmp" th:field="*{tipoEmp}">
+                <option value="3">ADMIN</option>
+                <option value="4">USER</option>
+            </select>
             <span th:if="${#fields.hasErrors('tipoEmp')}" th:errors="*{tipoEmp}">Error Tipo de Empleado</span>
             <br/>
             <input type="submit" name="guardarempleado" th:value="#{accion.guardar}"/>
         </form>
-        
+
         <a th:href="@{/empleado}">[[#{accion.regresar}]]</a>
-        
+
         <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>

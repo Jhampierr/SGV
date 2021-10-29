@@ -14,9 +14,9 @@
                 <tr>
                     <th>[[#{producto.nombre}]]</th>
                     <th>[[#{producto.precio}]]</th>
-                    <th>[[#{producto.detalle}]]</th>
                     <th>[[#{producto.tipoProd}]]</th>
                     <th>[[#{producto.catProd}]]</th>
+                    <th>[[#{producto.detalle}]]</th>
                     <th>[[#{audi.usuarioInsert}]]</th>
                     <th>[[#{audi.fechaInsert}]]</th>
                     <th>[[#{audi.usuarioUpdate}]]</th>
@@ -32,9 +32,9 @@
                 <tr th:each="producto : ${producto}">
                     <td th:text="${producto.nombre}">Mostrar Nombre</td>
                     <td th:text="${producto.precio}">Mostrar Precio</td>
+                    <td th:text="${producto.tipoProd.descripcion}">Mostrar Tipo de Producto</td>
+                    <td th:text="${producto.catProd.descripcion}">Mostrar Categoria de Producto</td>
                     <td th:text="${producto.detalle}">Mostrar Detalle</td>
-                    <td th:text="${producto.tipoProd}">Mostrar Tipo de Producto</td>
-                    <td th:text="${producto.catProd}">Mostrar Tipo de Categoria</td>
                     <td th:text="${producto.usuarioInsert}">Mostrar Usuario Insert</td>
                     <td th:text="${producto.fechaInsert}">Mostrar Fecha Insert</td>
                     <td th:text="${producto.usuarioUpdate}">Mostrar Usuario Update</td>

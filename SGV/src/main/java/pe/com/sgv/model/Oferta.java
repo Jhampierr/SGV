@@ -32,10 +32,9 @@ public class Oferta implements Serializable {
     @NotEmpty
     private String estado;
     
-    //@NotEmpty
-    @Column(name="producto_id_producto")
-    //private Producto producto;
-    private Integer producto;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_producto")
+    private Producto idProducto;
     
     private String usuarioInsert;
     private String fechaInsert;

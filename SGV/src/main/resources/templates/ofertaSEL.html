@@ -12,12 +12,14 @@
         <div th:if="${oferta != null and !oferta.empty}">
             <table border="1">
                 <tr>
-                    <th>[[#{oferta.detalle}]]</th>
-                    <th>[[#{oferta.precioOferta}]]</th>
+                    <th>[[#{oferta.estado}]]</th>
                     <th>[[#{oferta.fechaInicio}]]</th>
                     <th>[[#{oferta.fechaFinal}]]</th>
-                    <th>[[#{oferta.estado}]]</th>
-                    <th>[[#{oferta.producto}]]</th>
+                    <th>[[#{oferta.detalle}]]</th>
+                    <th>[[#{oferta.idProducto}]]</th>
+                    <th>[[#{oferta.precioOferta}]]</th>
+                    <th>[[#{producto.tipoProd}]]</th>
+                    <th>[[#{producto.catProd}]]</th>
                     <th>[[#{audi.usuarioInsert}]]</th>
                     <th>[[#{audi.fechaInsert}]]</th>
                     <th>[[#{audi.usuarioUpdate}]]</th>
@@ -31,12 +33,14 @@
                 </tr>
 
                 <tr th:each="oferta : ${oferta}">
-                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
-                    <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
+                    <td th:text="${oferta.estado}">Mostrar Estado</td>
                     <td th:text="${oferta.fechaInicio}">Mostrar Fecha Inicio</td>
                     <td th:text="${oferta.fechaFinal}">Mostrar Fecha Final</td>
-                    <td th:text="${oferta.estado}">Mostrar Estado</td>
-                    <td th:text="${oferta.producto}">Mostrar Producto</td>
+                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
+                    <td th:text="${oferta.idProducto.nombre}">Mostrar Producto</td>
+                    <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
+                    <td th:text="${oferta.idProducto.tipoProd.descripcion}">Mostrar Tipo Producto</td>
+                    <td th:text="${oferta.idProducto.catProd.descripcion}">Mostrar Categoria Producto</td>
                     <td th:text="${oferta.usuarioInsert}">Mostrar Usuario Insert</td>
                     <td th:text="${oferta.fechaInsert}">Mostrar Fecha Insert</td>
                     <td th:text="${oferta.usuarioUpdate}">Mostrar Usuario Update</td>

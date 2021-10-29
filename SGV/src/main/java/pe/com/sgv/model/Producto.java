@@ -27,15 +27,14 @@ public class Producto implements Serializable {
     @NotEmpty
     private String detalle; 
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_tipo_producto")
+    private TipoProducto tipoProd;
     
-    @Column(name="tipo_producto_id_tipo_producto")
-    //private TipoProducto tipoProd;
-    private Integer tipoProd;
     
-    
-    @Column(name="cat_producto_id_cat_producto")
-    //private CatProducto catProd;
-    private Integer catProd;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_cat_producto")
+    private CatProducto catProd;
     
     private String usuarioInsert;
     private String fechaInsert;

@@ -37,21 +37,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public Empleado encontrarEmpleado(Empleado empleado) {
         return empleadoDao.findById(empleado.getIdEmpleado()).orElse(null);
     }
-
-    /*@Override
-    @Transactional(readOnly=true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Empleado empleado = empleadoDao.findByUsername(username);
-        if(empleado==null){
-            throw new UsernameNotFoundException(username);
-        }
-        var tipo = new ArrayList<GrantedAuthority>();
-        
-        for(TipoEmpleado tipo: empleado.getTipoEmp()){
-            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
-        }
-        return new User(usuario.getUsername(), usuario.getPassword(), roles);
-    }*/
-    
+   
     
 }

@@ -8,20 +8,16 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-        
+
         <h2>[[#{oferta.formulario}]]</h2>
-        
+
         <br/>
         <form th:action="@{/guardaroferta}" method="post" th:object="${oferta}">
             <input type="hidden" name="idOferta" th:field="*{idOferta}"/>
-             <br/>
-            <label for="detalle">[[#{oferta.detalle}]]: </label>
-            <input type="text" name="detalle" th:field="*{detalle}"/>
-            <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error detalle</span> 
             <br/>
-            <label for="precioOferta">[[#{oferta.precioOferta}]]: </label>
-            <input type="number" name="precioOferta" th:field="*{precioOferta}"/>
-            <span th:if="${#fields.hasErrors('precioOferta')}" th:errors="*{precioOferta}">Error precioOferta</span>   
+            <label for="estado">[[#{oferta.estado}]]: </label>
+            <input type="text" name="estado" th:field="*{estado}"/>
+            <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error estado</span>
             <br/>
             <label for="fechaInicio">[[#{oferta.fechaInicio}]]: </label>
             <input type="date" name="fechaInicio" th:field="*{fechaInicio}"/>
@@ -31,19 +27,44 @@
             <input type="date" name="fechaFinal" th:field="*{fechaFinal}"/>
             <span th:if="${#fields.hasErrors('fechaFinal')}" th:errors="*{fechaFinal}">Error fechaFinal</span>
             <br/>
-            <label for="estado">[[#{oferta.estado}]]: </label>
-            <input type="text" name="estado" th:field="*{estado}"/>
-            <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error estado</span>
+            <label for="detalle">[[#{oferta.detalle}]]: </label>
+            <input type="text" name="detalle" th:field="*{detalle}"/>
+            <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error detalle</span>
             <br/>
-            <label for="producto">[[#{oferta.producto}]]: </label>
-            <input name="producto" th:field="*{producto}"/>
-            <span th:if="${#fields.hasErrors('producto')}" th:errors="*{producto}">Error producto</span>
-            
+            <label for="idProducto">[[#{oferta.idProducto}]]: </label>
+            <input type="text" name="idProducto" th:field="*{idProducto}"/>
+            <span th:if="${#fields.hasErrors('idProducto')}" th:errors="*{idProducto}">Error nombre de producto</span>
+            <br/>
+            <label for="precioOferta">[[#{oferta.precioOferta}]]: </label>
+            <input name="precioOferta" th:field="*{precioOferta}"/>
+            <span th:if="${#fields.hasErrors('precioOferta')}" th:errors="*{precioOferta}">Error precioOferta</span>   
+            <br/>
+            <label for="idProducto">[[#{producto.tipoProd}]]: </label>
+            <select name="idProducto" th:field="*{idProducto.tipoProd}">
+                <option value="11">Gaseosa</option>
+                <option value="12">Alcoholica</option>
+                <option value="13">Natural</option>
+                <option value="14">Entrada</option>
+                <option value="15">Piqueo</option>
+                <option value="16">Marino</option>
+                <option value="17">Caliente</option>
+                <option value="18">Frio</option>
+            </select>
+            <span th:if="${#fields.hasErrors('idProducto')}" th:errors="*{idProducto}">Error Tipo de Producto</span>
+            <br/>
+            <label for="idProducto">[[#{producto.catProd}]]: </label>
+            <select name="idProducto" th:field="*{idProducto.catProd}">
+                <option value="4">Bebida</option>
+                <option value="5">Platillo</option>
+                <option value="6">Postre</option>
+            </select>
+            <span th:if="${#fields.hasErrors('idProducto')}" th:errors="*{idProducto}">Error Categoria Producto</span>
+            <br/>
             <input type="submit" name="guardaroferta" th:value="#{accion.guardar}"/>
         </form>
-        
+
         <a th:href="@{/oferta}">[[#{accion.regresar}]]</a>
-        
+
         <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>

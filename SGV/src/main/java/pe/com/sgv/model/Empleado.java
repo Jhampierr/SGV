@@ -1,6 +1,7 @@
 
 package pe.com.sgv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -39,10 +40,9 @@ public class Empleado implements Serializable {
     @NotEmpty
     private String fechaIngreso;
     
-    
-    //@OneToMany
-    @Column(name="tipo_empleado_id_tipo_empleado")
-    private Integer tipoEmp;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_tipo_empleado")
+    private TipoEmpleado tipoEmp;
     
     private String usuarioInsert;
     private String fechaInsert;
