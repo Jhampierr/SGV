@@ -8,7 +8,7 @@
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <a th:href="@{/agregarproducto}">[[#{producto.crear}]]</a>
+        <a sec:authorize="hasRole ('ROLE_ADMIN')" th:href="@{/agregarproducto}">[[#{producto.crear}]]</a>
         <div th:if="${producto != null and !producto.empty}">
             <table border="1">
                 <tr>
@@ -17,16 +17,8 @@
                     <th>[[#{producto.tipoProd}]]</th>
                     <th>[[#{producto.catProd}]]</th>
                     <th>[[#{producto.detalle}]]</th>
-                    <th>[[#{audi.usuarioInsert}]]</th>
-                    <th>[[#{audi.fechaInsert}]]</th>
-                    <th>[[#{audi.usuarioUpdate}]]</th>
-                    <th>[[#{audi.fechaUpdate}]]</th>
-                    <th>[[#{audi.usuarioDelete}]]</th>
-                    <th>[[#{audi.fechaDelete}]]</th>
-                    <th>[[#{audi.hostName}]]</th>
-                    <th>[[#{audi.ip}]]</th>
-                    <th>[[#{accion.editar}]]</th>
-                    <th>[[#{accion.eliminar}]]</th>
+                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
                 </tr>
 
                 <tr th:each="producto : ${producto}">
@@ -35,16 +27,8 @@
                     <td th:text="${producto.tipoProd.descripcion}">Mostrar Tipo de Producto</td>
                     <td th:text="${producto.catProd.descripcion}">Mostrar Categoria de Producto</td>
                     <td th:text="${producto.detalle}">Mostrar Detalle</td>
-                    <td th:text="${producto.usuarioInsert}">Mostrar Usuario Insert</td>
-                    <td th:text="${producto.fechaInsert}">Mostrar Fecha Insert</td>
-                    <td th:text="${producto.usuarioUpdate}">Mostrar Usuario Update</td>
-                    <td th:text="${producto.fechaUpdate}">Mostrar Fecha Update</td>
-                    <td th:text="${producto.usuarioDelete}">Mostrar Usuario Delete</td>
-                    <td th:text="${producto.fechaDelete}">Mostrar Fecha Delete</td>
-                    <td th:text="${producto.hostName}">Mostrar Host Name</td>
-                    <td th:text="${producto.ip}">Mostrar IP</td>
-                    <td><a th:href="@{/editarproducto/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
-                    <td><a th:href="@{/eliminarproducto(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarproducto/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarproducto(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

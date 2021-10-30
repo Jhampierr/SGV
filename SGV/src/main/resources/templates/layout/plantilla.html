@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Plantilla</title>
         <meta charset="UTF-8"/>
@@ -13,7 +14,10 @@
 
         <footer th:fragment="footer">
             <p>[[#{platilla.pie-pagina}]] <a href="https://www.facebook.com/Jhampierr.Kaiser" target="_blank">Jhampierr Correa</a></p>
+            
             <form method="POST" th:action="@{/logout}">
+                <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
+                <b>Roles: </b> <span sec:authentication="principal.authorities">Roles</span>
                 <a href="#" onclick="this.parentNode.submit();">Logout</a>
             </form>
         </footer>

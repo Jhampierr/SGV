@@ -1,7 +1,6 @@
 
 package pe.com.sgv.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -48,8 +47,6 @@ public class Empleado implements Serializable {
     private String fechaInsert;
     private String usuarioUpdate;
     private String fechaUpdate;
-    private String usuarioDelete;
-    private String fechaDelete;
     private String hostName;
     private String ip;   
 

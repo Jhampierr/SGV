@@ -27,8 +27,6 @@ public class Imagen implements Serializable{
     private String fechaInsert;
     private String usuarioUpdate;
     private String fechaUpdate;
-    private String usuarioDelete;
-    private String fechaDelete;
     private String hostName;
     private String ip;
 }

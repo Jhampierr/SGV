@@ -8,9 +8,9 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-        
+
         <h2>[[#{tipoEmpleado.formulario}]]</h2>
-        
+
         <br/>
         <form th:action="@{/guardartipoEmpleado}" method="post" th:object="${tipoEmpleado}">
             <input type="hidden" name="idTipoEmpleado" th:field="*{idTipoEmpleado}"/>
@@ -19,11 +19,12 @@
             <input type="text" name="descripcion" th:field="*{descripcion}"/>
             <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error descripcion</span>   
             <br/>
+            
             <input type="submit" name="guardartipoEmpleado" th:value="#{accion.guardar}"/>
         </form>
-        
+
         <a th:href="@{/tipoEmpleado}">[[#{accion.regresar}]]</a>
-        
+
         <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>

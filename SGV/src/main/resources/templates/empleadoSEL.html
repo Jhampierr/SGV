@@ -8,7 +8,7 @@
     <body>
         <header th:replace="layout/plantilla :: header"></header>
         
-        <a th:href="@{/agregarempleado}">[[#{empleado.crear}]]</a>
+        <a sec:authorize="hasRole ('ROLE_ADMIN')" th:href="@{/agregarempleado}">[[#{empleado.crear}]]</a>
         <div th:if="${empleado != null and !empleado.empty}">
             <table border="1">
                 <tr>
@@ -20,16 +20,8 @@
                     <th>[[#{empleado.direccion}]]</th>
                     <th>[[#{empleado.fechaIngreso}]]</th>
                     <th>[[#{empleado.tipoEmp}]]</th>
-                    <th>[[#{audi.usuarioInsert}]]</th>
-                    <th>[[#{audi.fechaInsert}]]</th>
-                    <th>[[#{audi.usuarioUpdate}]]</th>
-                    <th>[[#{audi.fechaUpdate}]]</th>
-                    <th>[[#{audi.usuarioDelete}]]</th>
-                    <th>[[#{audi.fechaDelete}]]</th>
-                    <th>[[#{audi.hostName}]]</th>
-                    <th>[[#{audi.ip}]]</th>
-                    <th>[[#{accion.editar}]]</th>
-                    <th>[[#{accion.eliminar}]]</th>
+                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
                 </tr>
 
                 <tr th:each="empleado : ${empleado}">
@@ -41,16 +33,8 @@
                     <td th:text="${empleado.direccion}">Mostrar Direccion</td>
                     <td th:text="${empleado.fechaIngreso}">Mostrar Fecha Ingreso</td>
                     <td th:text="${empleado.tipoEmp.descripcion}">Mostrar Tipo de Empleado</td>
-                    <td th:text="${empleado.usuarioInsert}">Mostrar Usuario Insert</td>
-                    <td th:text="${empleado.fechaInsert}">Mostrar Fecha Insert</td>
-                    <td th:text="${empleado.usuarioUpdate}">Mostrar Usuario Update</td>
-                    <td th:text="${empleado.fechaUpdate}">Mostrar Fecha Update</td>
-                    <td th:text="${empleado.usuarioDelete}">Mostrar Usuario Delete</td>
-                    <td th:text="${empleado.fechaDelete}">Mostrar Fecha Delete</td>
-                    <td th:text="${empleado.hostName}">Mostrar Host Name</td>
-                    <td th:text="${empleado.ip}">Mostrar IP</td>
-                    <td><a th:href="@{/editarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.editar}]]</td>
-                    <td><a th:href="@{/eliminarempleado(idEmpleado=${empleado.idEmpleado})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.editar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarempleado(idEmpleado=${empleado.idEmpleado})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

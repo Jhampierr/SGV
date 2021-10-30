@@ -49,6 +49,7 @@
                 <option value="4">USER</option>
             </select>
             <span th:if="${#fields.hasErrors('tipoEmp')}" th:errors="*{tipoEmp}">Error Tipo de Empleado</span>
+
             <br/>
             <input type="submit" name="guardarempleado" th:value="#{accion.guardar}"/>
         </form>

@@ -1,6 +1,10 @@
 
 package pe.com.sgv.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pe.com.sgv.model.CheckIP;
+import pe.com.jp.util.CheckIP;
 import pe.com.sgv.model.Oferta;
 import pe.com.sgv.servicio.OfertaService;
 
@@ -40,6 +44,11 @@ public class ControladorOferta {
             return "ofertaUPD";
             
         }
+        
+        String fechString = LocalDate.now().toString();
+        String horaString = LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
+        oferta.setFechaUpdate(fechString + " " + horaString);
+        //empleado.setUsuarioUpdate(tipoEmpleado.getDescripcion());
         
         oferta.setHostName(check.host().getHostName());
         oferta.setIp(check.host().getHostAddress());

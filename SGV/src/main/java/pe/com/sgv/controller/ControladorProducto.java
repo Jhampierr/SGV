@@ -1,6 +1,10 @@
 
 package pe.com.sgv.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pe.com.sgv.model.CheckIP;
+import pe.com.jp.util.CheckIP;
 import pe.com.sgv.model.Producto;
 import pe.com.sgv.servicio.ProductoService;
 
@@ -40,6 +44,11 @@ public class ControladorProducto {
             return "productoUPD";
             
         }
+        
+        String fechString = LocalDate.now().toString();
+        String horaString = LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
+        producto.setFechaUpdate(fechString + " " + horaString);
+        //tipoEmpleado.setUsuarioUpdate(tipoEmpleado.getDescripcion());
         
         producto.setHostName(check.host().getHostName());
         producto.setIp(check.host().getHostAddress());

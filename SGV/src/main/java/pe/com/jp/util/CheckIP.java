@@ -1,4 +1,4 @@
-package pe.com.sgv.model;
+package pe.com.jp.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

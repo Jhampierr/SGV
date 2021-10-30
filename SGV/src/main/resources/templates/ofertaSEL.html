@@ -20,14 +20,6 @@
                     <th>[[#{oferta.precioOferta}]]</th>
                     <th>[[#{producto.tipoProd}]]</th>
                     <th>[[#{producto.catProd}]]</th>
-                    <th>[[#{audi.usuarioInsert}]]</th>
-                    <th>[[#{audi.fechaInsert}]]</th>
-                    <th>[[#{audi.usuarioUpdate}]]</th>
-                    <th>[[#{audi.fechaUpdate}]]</th>
-                    <th>[[#{audi.usuarioDelete}]]</th>
-                    <th>[[#{audi.fechaDelete}]]</th>
-                    <th>[[#{audi.hostName}]]</th>
-                    <th>[[#{audi.ip}]]</th>
                     <th>[[#{accion.editar}]]</th>
                     <th>[[#{accion.eliminar}]]</th>
                 </tr>
@@ -41,14 +33,6 @@
                     <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
                     <td th:text="${oferta.idProducto.tipoProd.descripcion}">Mostrar Tipo Producto</td>
                     <td th:text="${oferta.idProducto.catProd.descripcion}">Mostrar Categoria Producto</td>
-                    <td th:text="${oferta.usuarioInsert}">Mostrar Usuario Insert</td>
-                    <td th:text="${oferta.fechaInsert}">Mostrar Fecha Insert</td>
-                    <td th:text="${oferta.usuarioUpdate}">Mostrar Usuario Update</td>
-                    <td th:text="${oferta.fechaUpdate}">Mostrar Fecha Update</td>
-                    <td th:text="${oferta.usuarioDelete}">Mostrar Usuario Delete</td>
-                    <td th:text="${oferta.fechaDelete}">Mostrar Fecha Delete</td>
-                    <td th:text="${oferta.hostName}">Mostrar Host Name</td>
-                    <td th:text="${oferta.ip}">Mostrar IP</td>
                     <td><a th:href="@{/editaroferta/} + ${oferta.idOferta}"/>[[#{accion.editar}]]</td>
                     <td><a th:href="@{/eliminaroferta(idOferta=${oferta.idOferta})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
