@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Producto</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <h2>[[#{producto.formulario}]]</h2>
+
+        <br/>
+        <img th:src="@{'/images/' + ${producto.foto}}" 
+             th:alt="${producto.foto}"
+             />
+        
+        <ul>
+            <li th:text="'Nombre del producto: ' + ${producto.nombre}"></li>
+            <li th:text="'Precio del producto: ' + ${producto.precio}"></li>
+            <li th:text="'Detalle producto: ' + ${producto.detalle}"></li>
+        </ul>
+
+        
+        
+        <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

@@ -27,6 +27,10 @@ public class Producto implements Serializable {
     @NotEmpty
     private String detalle; 
     
+    
+    @Column(name="foto")
+    private String foto;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProd;
