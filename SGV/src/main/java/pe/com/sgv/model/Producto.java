@@ -21,15 +21,13 @@ public class Producto implements Serializable {
     @NotEmpty
     private String nombre;  
     
-    
     private Double precio;
     
     @NotEmpty
     private String detalle; 
     
-    
-    @Column(name="foto")
-    private String foto;
+    //@Column(name="foto")
+    private String imagen;
     
     @ManyToOne
     @JoinColumn(name="id_tipo_producto")

@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,8 +68,8 @@ public class ControladorProducto {
 
     @PostMapping("/guardarproducto")
     public String guardar(@Valid @ModelAttribute Producto producto, BindingResult result,
-            Model model, CheckIP check, RedirectAttributes attribute,
-            @RequestParam("file") MultipartFile foto) {
+            Model model, @RequestParam("file") MultipartFile imagen, CheckIP check,
+            RedirectAttributes attribute) {
 
         List<TipoProducto> tipoProd = tipoProductoService.listarTipoProducto();
         List<CatProducto> catProd = catProductoService.listarCatProducto();
@@ -83,18 +82,19 @@ public class ControladorProducto {
             return "productoUPD";
 
         }
-        if (!foto.isEmpty()) {
-            Path directorioImagenes = Paths.get("src//main//resources/images");
-            String rutaAcsoluta = directorioImagenes.toFile().getAbsolutePath();
+        if (!imagen.isEmpty()) {
+            Path directorioImagenes = Paths.get("src//main//resources//static/images");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 
             try {
-                byte[] byteImg = foto.getBytes();
-                Path rutaCompleta = Paths.get(rutaAcsoluta + "//" + foto.getOriginalFilename());
+                byte[] byteImg = imagen.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
                 Files.write(rutaCompleta, byteImg);
-                producto.setFoto(foto.getOriginalFilename());
+                
+                producto.setImagen(imagen.getOriginalFilename());
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }
@@ -113,14 +113,28 @@ public class ControladorProducto {
         return "redirect:/producto/";
     }
 
-    /*
-    @GetMapping("/verproducto/{idProducto}")
-    public String verProducto(Producto producto, Model model) {
-        producto = productoService.encontrarProducto(producto);
+    @GetMapping("/detalleproducto/{idProducto}")
+    public String detalle(@PathVariable("idProducto") Long idProducto,
+            Model model, RedirectAttributes attribute) {
+
+        Producto producto = null;
+
+        if (idProducto > 0) {
+            producto = productoService.encontrarProducto(idProducto);
+            if (producto == null) {
+                attribute.addFlashAttribute("error", "ATENCION: El ID del producto no existe!");
+                return "redirect:/producto/";
+            }
+        } else {
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del producto");
+            return "redirect:/producto/";
+        }
+
         model.addAttribute("producto", producto);
+        
         return "productoDetalle";
     }
-     */
+     
     @GetMapping("/editarproducto/{idProducto}")
     public String editar(@PathVariable("idProducto") Long idProducto,
             Model model, RedirectAttributes attribute) {

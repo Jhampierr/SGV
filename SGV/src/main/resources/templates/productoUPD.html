@@ -12,20 +12,20 @@
         <h2>[[#{producto.formulario}]]</h2>
 
         <br/>
-        <form th:action="@{/guardarproducto}" method="post" 
-              th:object="${producto}" enctype="multipart/form-data">
+        <form th:action="@{/guardarproducto}" th:object="${producto}" 
+               method="post" enctype="multipart/form-data">
             <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
             <br/>
             <label for="nombre">[[#{producto.nombre}]]: </label>
             <input type="text" name="nombre" th:field="*{nombre}"/>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
             <br/>
-            <label for="foto">Imagen: </label>
-            <input type="file" name="file" />
-            <span th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}">Error Foto</span>   
+            <label for="imagen">Imagen:</label>
+            <input type="file" name="file"/>
+            <span th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}">Error Foto</span>   
             <br/>
             <label for="precio">[[#{producto.precio}]]: </label>
-            <input type="number" name="precio" th:field="*{precio}"/>
+            <input name="precio" th:field="*{precio}"/>
             <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
             <br/>
             <label for="tipoProd">[[#{producto.tipoProd}]]: </label>

@@ -12,9 +12,9 @@
         <h2>[[#{producto.formulario}]]</h2>
 
         <br/>
-        <img th:src="@{'/images/' + ${producto.foto}}" 
-             th:alt="${producto.foto}"
-             />
+        <img th:src="@{'/images/' + ${producto.imagen}}" 
+             th:alt="${producto.imagen}"
+             style="max-width: 25%;"/>
         
         <ul>
             <li th:text="'Nombre del producto: ' + ${producto.nombre}"></li>
