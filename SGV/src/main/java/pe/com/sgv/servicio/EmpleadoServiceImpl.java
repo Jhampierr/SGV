@@ -27,16 +27,14 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    @Transactional
-    public void eliminar(Empleado empleado) {
-        empleadoDao.delete(empleado);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public Empleado encontrarEmpleado(Empleado empleado) {
-        return empleadoDao.findById(empleado.getIdEmpleado()).orElse(null);
+    public Empleado encontrarEmpleado(Long empleado) {
+        return empleadoDao.findById(empleado).orElse(null);
     }
    
-    
+    @Override
+    @Transactional
+    public void eliminar(Long empleado) {
+        empleadoDao.deleteById(empleado);
+    }
 }

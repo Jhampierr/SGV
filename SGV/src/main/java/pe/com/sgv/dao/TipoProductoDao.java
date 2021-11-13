@@ -6,5 +6,4 @@ import pe.com.sgv.model.TipoProducto;
 
 public interface TipoProductoDao extends CrudRepository<TipoProducto, Long>{
 
-    
 }

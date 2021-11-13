@@ -34,7 +34,7 @@
                     <td th:text="${empleado.fechaIngreso}">Mostrar Fecha Ingreso</td>
                     <td th:text="${empleado.tipoEmp.descripcion}">Mostrar Tipo de Empleado</td>
                     <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.editar}]]</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarempleado(idEmpleado=${empleado.idEmpleado})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

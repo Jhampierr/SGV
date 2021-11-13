@@ -45,8 +45,10 @@
             <br/>
             <label for="tipoEmp">[[#{empleado.tipoEmp}]]: </label>
             <select name="tipoEmp" th:field="*{tipoEmp}">
-                <option value="3">ADMIN</option>
-                <option value="4">USER</option>
+                <option th:each="tipoEmp:${tipoEmp}"
+                        th:value="${tipoEmp.idTipoEmpleado}"
+                        th:text="${tipoEmp.descripcion}"		
+                        />
             </select>
             <span th:if="${#fields.hasErrors('tipoEmp')}" th:errors="*{tipoEmp}">Error Tipo de Empleado</span>
 

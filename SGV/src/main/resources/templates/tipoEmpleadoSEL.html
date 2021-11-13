@@ -20,7 +20,7 @@
                 <tr th:each="tipoEmpleado : ${tipoEmpleado}">
                     <td th:text="${tipoEmpleado.descripcion}">Mostrar Descripcion</td>
                     <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.editar}]]</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminartipoEmpleado(idTipoEmpleado=${tipoEmpleado.idTipoEmpleado})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

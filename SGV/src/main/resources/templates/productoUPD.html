@@ -30,22 +30,19 @@
             <br/>
             <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
             <select name="tipoProd" th:field="*{tipoProd}">
-                <option value="11">Gaseosa</option>
-                <option value="12">Alcoholica</option>
-                <option value="13">Natural</option>
-                <option value="14">Entrada</option>
-                <option value="15">Piqueo</option>
-                <option value="16">Marino</option>
-                <option value="17">Caliente</option>
-                <option value="18">Frio</option>
+                <option th:each="tipoProd:${tipoProd}"
+                        th:value="${tipoProd.idTipoProducto}"
+                        th:text="${tipoProd.descripcion}"		
+                        />
             </select>
             <span th:if="${#fields.hasErrors('tipoProd')}" th:errors="*{tipoProd}">Error Tipo de Producto</span>
             <br/>
             <label for="catProd">[[#{producto.catProd}]]: </label>
             <select name="catProd" th:field="*{catProd}">
-                <option value="4">Bebida</option>
-                <option value="5">Platillo</option>
-                <option value="6">Postre</option>
+                <option th:each="catProd:${catProd}"
+                        th:value="${catProd.idCatProducto}"
+                        th:text="${catProd.descripcion}"		
+                        />
             </select>
             <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
             <br/>

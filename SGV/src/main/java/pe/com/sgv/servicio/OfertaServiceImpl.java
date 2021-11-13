@@ -25,17 +25,17 @@ public class OfertaServiceImpl implements OfertaService{
     public void guardar(Oferta oferta) {
         ofertaDao.save(oferta);
     }
-
-    @Override
-    @Transactional
-    public void eliminar(Oferta oferta) {
-        ofertaDao.delete(oferta);
-    }
-
+    
     @Override
     @Transactional(readOnly = true)
-    public Oferta encontrarOferta(Oferta oferta) {
-        return ofertaDao.findById(oferta.getIdOferta()).orElse(null);
+    public Oferta encontrarOferta(Long oferta) {
+        return ofertaDao.findById(oferta).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long oferta) {
+        ofertaDao.deleteById(oferta);
+    }
+
 }

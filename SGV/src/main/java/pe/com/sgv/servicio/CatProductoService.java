@@ -5,11 +5,8 @@ import pe.com.sgv.model.CatProducto;
 
 public interface CatProductoService {
     public List<CatProducto> listarCatProducto();
-    
     public void guardar(CatProducto catProducto);
-    
-    public void eliminar(CatProducto catProducto);
-    
-    public CatProducto encontrarCatProducto (CatProducto catProducto);
-            
+    public CatProducto encontrarCatProducto (Long catProducto);
+    public void eliminar(Long catProducto);
+                
 }

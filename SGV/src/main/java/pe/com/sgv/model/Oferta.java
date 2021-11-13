@@ -32,7 +32,7 @@ public class Oferta implements Serializable {
     @NotEmpty
     private String estado;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="id_producto")
     private Producto idProducto;
     

@@ -34,7 +34,7 @@
                     </td>
                     
                     <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarproducto/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarproducto(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarproducto/} + ${producto.idProducto}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

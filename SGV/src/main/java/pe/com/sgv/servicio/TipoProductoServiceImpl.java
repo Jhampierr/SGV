@@ -27,15 +27,14 @@ public class TipoProductoServiceImpl implements TipoProductoService{
     }
 
     @Override
-    @Transactional
-    public void eliminar(TipoProducto tipoProducto) {
-        tipoProductoDao.delete(tipoProducto);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public TipoProducto encontrarTipoProducto(TipoProducto tipoProducto) {
-        return tipoProductoDao.findById(tipoProducto.getIdTipoProducto()).orElse(null);
+    public TipoProducto encontrarTipoProducto(Long tipoProducto) {
+        return tipoProductoDao.findById(tipoProducto).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long tipoProducto) {
+        tipoProductoDao.deleteById(tipoProducto);
+    }
 }

@@ -27,15 +27,14 @@ public class TipoEmpleadoServiceImpl implements TipoEmpleadoService{
     }
 
     @Override
-    @Transactional
-    public void eliminar(TipoEmpleado tipoEmpleado) {
-        tipoEmpleadoDao.delete(tipoEmpleado);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public TipoEmpleado encontrarTipoEmpleado(TipoEmpleado tipoEmpleado) {
-        return tipoEmpleadoDao.findById(tipoEmpleado.getIdTipoEmpleado()).orElse(null);
+    public TipoEmpleado encontrarTipoEmpleado(Long tipoEmpleado) {
+        return tipoEmpleadoDao.findById(tipoEmpleado).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long tipoEmpleado) {
+        tipoEmpleadoDao.deleteById(tipoEmpleado);
+    }
 }

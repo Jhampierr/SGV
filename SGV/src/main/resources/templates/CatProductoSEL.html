@@ -20,7 +20,7 @@
                 <tr th:each="catProducto : ${catProducto}">
                     <td th:text="${catProducto.descripcion}">Mostrar Descripcion</td>
                     <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarcatProducto/} + ${catProducto.idCatProducto}"/>[[#{accion.editar}]]</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarcatProducto(idCatProducto=${catProducto.idCatProducto})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarcatProducto/} + ${catProducto.idCatProducto}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

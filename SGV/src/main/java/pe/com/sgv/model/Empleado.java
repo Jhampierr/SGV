@@ -39,7 +39,7 @@ public class Empleado implements Serializable {
     @NotEmpty
     private String fechaIngreso;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="id_tipo_empleado")
     private TipoEmpleado tipoEmp;
     

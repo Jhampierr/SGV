@@ -15,11 +15,11 @@
                     <th>[[#{oferta.estado}]]</th>
                     <th>[[#{oferta.fechaInicio}]]</th>
                     <th>[[#{oferta.fechaFinal}]]</th>
-                    <th>[[#{oferta.detalle}]]</th>
                     <th>[[#{oferta.idProducto}]]</th>
                     <th>[[#{oferta.precioOferta}]]</th>
                     <th>[[#{producto.tipoProd}]]</th>
                     <th>[[#{producto.catProd}]]</th>
+                    <th>[[#{oferta.detalle}]]</th>
                     <th>[[#{accion.editar}]]</th>
                     <th>[[#{accion.eliminar}]]</th>
                 </tr>
@@ -28,13 +28,13 @@
                     <td th:text="${oferta.estado}">Mostrar Estado</td>
                     <td th:text="${oferta.fechaInicio}">Mostrar Fecha Inicio</td>
                     <td th:text="${oferta.fechaFinal}">Mostrar Fecha Final</td>
-                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
                     <td th:text="${oferta.idProducto.nombre}">Mostrar Producto</td>
                     <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
                     <td th:text="${oferta.idProducto.tipoProd.descripcion}">Mostrar Tipo Producto</td>
                     <td th:text="${oferta.idProducto.catProd.descripcion}">Mostrar Categoria Producto</td>
+                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
                     <td><a th:href="@{/editaroferta/} + ${oferta.idOferta}"/>[[#{accion.editar}]]</td>
-                    <td><a th:href="@{/eliminaroferta(idOferta=${oferta.idOferta})}"/>[[#{accion.eliminar}]]</td>
+                    <td><a th:href="@{/eliminaroferta/} + ${oferta.idOferta}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

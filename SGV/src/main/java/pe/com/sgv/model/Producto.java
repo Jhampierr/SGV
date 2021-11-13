@@ -31,12 +31,12 @@ public class Producto implements Serializable {
     @Column(name="foto")
     private String foto;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProd;
     
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="id_cat_producto")
     private CatProducto catProd;
     

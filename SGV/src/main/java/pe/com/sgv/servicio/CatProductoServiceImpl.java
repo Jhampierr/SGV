@@ -27,15 +27,15 @@ public class CatProductoServiceImpl implements CatProductoService{
     }
 
     @Override
-    @Transactional
-    public void eliminar(CatProducto catProducto) {
-        catProductoDao.delete(catProducto);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public CatProducto encontrarCatProducto(CatProducto catProducto) {
-        return catProductoDao.findById(catProducto.getIdCatProducto()).orElse(null);
+    public CatProducto encontrarCatProducto(Long catProducto) {
+        return catProductoDao.findById(catProducto).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long catProducto) {
+        catProductoDao.deleteById(catProducto);
+    }
+
 }

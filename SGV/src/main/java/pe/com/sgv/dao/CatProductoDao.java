@@ -6,5 +6,4 @@ import pe.com.sgv.model.CatProducto;
 
 public interface CatProductoDao extends CrudRepository<CatProducto, Long>{
 
-    
 }
