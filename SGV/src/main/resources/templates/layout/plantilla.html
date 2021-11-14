@@ -5,21 +5,185 @@
       xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Plantilla</title>
-        <meta charset="UTF-8"/>
+        <tag th:fragment="head">
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <!--=============== FAVICON ===============-->
+            <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
+
+            <!-- BoxIcons CDN Link -->
+            <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+            <!-- Mis Stilos -->
+            <link rel="stylesheet" href="css/main.css">
+        </tag>
     </head>
     <body>
-        <header th:fragment="header">
-            <h1 th:text="#{plantilla.titulo}">Titulo</h1>
-        </header>
+            <!--=========================== INICIA SIDEBAR ===========================-->
+            <header th:fragment="header">
+                <div class="sidebar">
+                    <div class="logo-details">
+                        <i class='bx bxs-rocket'></i>
+                        <span class="logo-name" th:text="#{plantilla.titulo}">Titulo</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li>
+                            <a href="..">
+                                <i class='bx bx-grid-alt' ></i>
+                                <span class="links-name">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/oferta}">
+                                <i class='bx bx-heart' ></i>
+                                <span class="links-name">Lista de Ofertas</span>
 
-        <footer th:fragment="footer">
-            <p>[[#{platilla.pie-pagina}]] <a href="https://www.facebook.com/Jhampierr.Kaiser" target="_blank">Jhampierr Correa</a></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/producto}">
+                                <i class='bx bx-box' ></i>
+                                <span class="links-name">Lista de Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/empleado}">
+                                <i class='bx bx-user' ></i>
+                                <span class="links-name">Lista de Empleados</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class='bx bx-book-alt' ></i>
+                                <span class="links-name">Lista de Pedidos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/tipoProducto}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Tipo Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/catProducto}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Categoria Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/tipoEmpleado}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Tipo Empleados</span>
+                            </a>
+                        </li>
+                        <li >
+                            <form method="POST" th:action="@{/logout}">
+                                <a href="#" onclick="this.parentNode.submit();" id='logout'> 
+                                    <i class='bx bx-log-out-circle' ></i>
+                                    <span class="links-name">Logout</span>
+                                </a>
+                            </form>
+                        </li>
+                        <li>
+                            <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
+                            <br/>
+                            <b>Roles: </b> <span sec:authentication="principal.authorities">Roles</span>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!--=========================== FIN SIDEBAR ===========================-->
             
-            <form method="POST" th:action="@{/logout}">
-                <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
-                <b>Roles: </b> <span sec:authentication="principal.authorities">Roles</span>
-                <a href="#" onclick="this.parentNode.submit();">Logout</a>
-            </form>
-        </footer>
+            <section class="home-section" th:fragment="home-section">
+                <!--=========================== INICIA HOME - NAV ===========================-->
+                    <nav>
+                        <div class="profile-details">
+                            <div class="admin-box">
+                                <span class="admin-name">Administrador</span>
+                                <img src="./img/profile-img.jpg" alt="Admin Img">
+                            </div>
+                        </div>
+                    </nav>
+                <!--=========================== FIN HOME - NAV ===========================-->
+                <!--=========================== INICIA HOME - CONTENT ===========================-->
+                <div class="home-content" th:fragment="home-content">
+                    <div class="overview-boxes">
+
+                        <!-- Init Box Item -->
+                        <div class="box">
+                            <div class="left-side">
+                                <div class="box-topic">
+                                    Nuevos Pedidos
+                                </div>
+                                <div class="number">
+                                    40.769
+                                </div>
+                                <div class="indicator">
+                                    <i class='bx bx-up-arrow-alt' ></i>
+                                    <div class="text">Up from yesterday</div>
+                                </div>
+                            </div>
+                            <i class='bx bxs-cart-alt cart' ></i>
+                        </div>
+                        <!-- End Box Item -->
+                        <!-- Init Box Item -->
+                        <div class="box">
+                            <div class="left-side">
+                                <div class="box-topic">
+                                    Pedidos Pedientes
+                                </div>
+                                <div class="number">
+                                    70.523
+                                </div>
+                                <div class="indicator">
+                                    <i class='bx bx-up-arrow-alt cartplus' ></i>
+                                    <div class="text">Up from yesterday</div>
+                                </div>
+                            </div>
+                            <i class='bx bxs-cart-add cart two' ></i>
+                        </div>
+                        <!-- End Box Item -->
+                        <!-- Init Box Item -->
+                        <div class="box">
+                            <div class="left-side">
+                                <div class="box-topic">
+                                    Pedidos Entregados
+                                </div>
+                                <div class="number">
+                                    25.523
+                                </div>
+                                <div class="indicator">
+                                    <i class='bx bx-up-arrow-alt cartup' ></i>
+                                    <div class="text">Up from yesterday</div>
+                                </div>
+                            </div>
+                            <i class='bx bxs-cart cart three'></i>
+                        </div>
+                        <!-- End Box Item -->
+                        <!-- Init Box Item -->
+                        <div class="box">
+                            <div class="left-side">
+                                <div class="box-topic">
+                                    Pedidos completados
+                                </div>
+                                <div class="number">
+                                    15.425
+                                </div>
+                                <div class="indicator">
+                                    <i class='bx bx-down-arrow-alt  down' ></i>
+                                    <div class="text">Up from yesterday</div>
+                                </div>
+                            </div>
+                            <i class='bx bxs-cart-download cart four'></i>
+                        </div>
+                        <!-- End Box Item -->
+                    </div>
+                </div>
+                <!--=========================== FIN HOME - CONTENT ===========================-->
+            </section>
+        
+        
+        <script src="./js/main.js"></script>
     </body>
 </html>

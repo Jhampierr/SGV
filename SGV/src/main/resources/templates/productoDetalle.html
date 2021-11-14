@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Datos del Producto</title>
-        <meta charset="UTF-8"/>
+        <title>Detalle del Producto</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
 
-        <h2>[[#{producto.formulario}]]</h2>
+        <section class="home-section">
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{producto.formulario}]]</div>
 
-        <br/>
-        <img th:src="@{'/images/' + ${producto.imagen}}" 
-             th:alt="${producto.imagen}"
-             style="max-width: 25%;"/>
-        
-        <ul>
-            <li th:text="'Nombre del producto: ' + ${producto.nombre}"></li>
-            <li th:text="'Precio del producto: ' + ${producto.precio}"></li>
-            <li th:text="'Detalle producto: ' + ${producto.detalle}"></li>
-        </ul>
+                    <br/>
+                    <img th:src="@{'/images/' + ${producto.imagen}}" 
+                         th:alt="${producto.imagen}"
+                         style="max-width: 25%;"/>
 
-        
-        
-        <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
+                    <ul>
+                        <li th:text="'Nombre del producto: ' + ${producto.nombre}"></li>
+                        <li th:text="'Precio del producto: ' + ${producto.precio}"></li>
+                        <li th:text="'Detalle producto: ' + ${producto.detalle}"></li>
+                    </ul>
 
-        <footer th:replace="layout/plantilla :: footer"></footer>
+
+                    <div class="button2">
+                        <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script>  
     </body>
 </html>

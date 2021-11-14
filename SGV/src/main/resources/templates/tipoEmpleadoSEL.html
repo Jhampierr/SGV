@@ -3,34 +3,46 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Tipo Empleado</title>
-        <meta charset="UTF-8">
+        <tag th:replace="layout/plantilla :: head"></tag>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-        
-        <a sec:authorize="hasRole ('ROLE_ADMIN')" th:href="@{/agregartipoEmpleado}">[[#{tipoEmpleado.crear}]]</a>
-        <div th:if="${tipoEmpleado != null and !tipoEmpleado.empty}">
-            <table border="1">
-                <tr>
-                    <th>[[#{tipoEmpleado.descripcion}]]</th>
-                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.editar}]]</th>
-                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
-                </tr>
 
-                <tr th:each="tipoEmpleado : ${tipoEmpleado}">
-                    <td th:text="${tipoEmpleado.descripcion}">Mostrar Descripcion</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.editar}]]</td>
-                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.eliminar}]]</td>
-                </tr>
-            </table>
-        </div>
-        <div th:if="${tipoEmpleado == null or tipoEmpleado.empty}">
-            [[#{tipoEmpleado.lista-vacia}]]
-        </div>
-        
-        <a th:href="@{/}">[[#{accion.regresar}]]</a>
-        
-        <footer th:replace="layout/plantilla :: footer"></footer>
-        
+        <section class="home-section">
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{tipoEmpleado.formulario}]]</div>
+
+                    <div th:if="${tipoEmpleado != null and !tipoEmpleado.empty}">
+                        <div class="sales-details">
+                            <table border="1">
+                                <tr>
+                                    <th>[[#{tipoEmpleado.descripcion}]]</th>
+                                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
+                                </tr>
+
+                                <tr th:each="tipoEmpleado : ${tipoEmpleado}">
+                                    <td th:text="${tipoEmpleado.descripcion}">Mostrar Descripcion</td>
+                                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.editar}]]</td>
+                                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminartipoEmpleado/} + ${tipoEmpleado.idTipoEmpleado}"/>[[#{accion.eliminar}]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div th:if="${tipoEmpleado == null or tipoEmpleado.empty}">
+                        [[#{tipoEmpleado.lista-vacia}]]
+                    </div>
+                    <div class="button">
+                        <a sec:authorize="hasRole ('ROLE_ADMIN')" th:href="@{/agregartipoEmpleado}">[[#{tipoEmpleado.crear}]]</a>
+                    </div>
+                    <div class="button2">
+                        <a th:href="@{/}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <script src="./js/main.js"></script> 
     </body>
 </html>

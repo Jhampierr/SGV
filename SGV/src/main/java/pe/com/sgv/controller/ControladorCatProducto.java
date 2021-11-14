@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.jp.util.CheckIP;
 import pe.com.sgv.model.CatProducto;
-import pe.com.sgv.model.TipoProducto;
 import pe.com.sgv.servicio.CatProductoService;
 
 @Controller
@@ -66,7 +64,7 @@ public class ControladorCatProducto {
         System.out.println("Categoria Producto guardado con exito");
         attribute.addFlashAttribute("success", "Categoria Producto guardado con exito!");
         
-        return "redirect:/catProducto/";
+        return "redirect:/catProducto";
     }
     
     @GetMapping("/editarcatProducto/{idCatProducto}")
@@ -89,8 +87,10 @@ public class ControladorCatProducto {
         }
         
        model.addAttribute("catProducto", catProducto);
+       
        return "catProductoUPD";
     }
+    
     @GetMapping("/eliminarcatProducto/{idCatProducto}")
     public String eliminarcatProducto(@PathVariable("idCatProducto") Long idCatProducto, 
             Model model, RedirectAttributes attribute){
@@ -114,7 +114,7 @@ public class ControladorCatProducto {
         System.out.println("CatProducto eliminado con exito");
         attribute.addFlashAttribute("warning", "CatProducto eliminado con Exito!");
         
-        return "redirect:/catProducto/";
+        return "redirect:/catProducto";
     }
     
 }

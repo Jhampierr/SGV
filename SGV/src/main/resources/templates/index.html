@@ -3,25 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Inicio</title>
-        <meta charset="UTF-8">
+        <tag th:replace="layout/plantilla :: head"></tag>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"></header>
-            
-            <a th:href="@{/tipoProducto}">Lista de Tipo Productos</a>
-            <br/>
-            <a th:href="@{/catProducto}">Lista de Categoria Productos</a>
-            <br/>
-            <a th:href="@{/producto}">Lista de Productos</a>
-            <br/>
-            <a th:href="@{/oferta}">Lista de Ofertas</a>
-            <br/>
-            <a th:href="@{/tipoEmpleado}">Lista de Tipo Empleados</a>
-            <br/>
-            <a th:href="@{/empleado}">Lista de Empleados</a>
-            <br/>
-                        
-        <footer th:replace="layout/plantilla :: footer"></footer>
+        <section th:replace="layout/plantilla :: home-section"></section>
         
+        
+        <script src="./js/main.js"></script>
     </body>
 </html>
