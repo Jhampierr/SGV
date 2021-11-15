@@ -27,15 +27,15 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    @Transactional
-    public void eliminar(Cliente cliente) {
-        clienteDao.delete(cliente);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public Cliente encontrarCliente(Cliente cliente) {
-        return clienteDao.findById(cliente.getIdCliente()).orElse(null);
+    public Cliente encontrarCliente(Long cliente) {
+        return clienteDao.findById(cliente).orElse(null);
+    }
+    
+    @Override
+    @Transactional
+    public void eliminar(Long cliente) {
+        clienteDao.deleteById(cliente);
     }
     
 }

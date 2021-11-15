@@ -25,17 +25,16 @@ public class PedidoServiceImpl implements PedidoService{
     public void guardar(Pedido pedido) {
         pedidoDao.save(pedido);
     }
-
-    @Override
-    @Transactional
-    public void eliminar(Pedido pedido) {
-        pedidoDao.delete(pedido);
-    }
-
+    
     @Override
     @Transactional(readOnly = true)
-    public Pedido encontrarPedido(Pedido pedido) {
-        return pedidoDao.findById(pedido.getIdPedido()).orElse(null);
+    public Pedido encontrarPedido(Long pedido) {
+        return pedidoDao.findById(pedido).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long pedido) {
+        pedidoDao.deleteById(pedido);
+    }
 }

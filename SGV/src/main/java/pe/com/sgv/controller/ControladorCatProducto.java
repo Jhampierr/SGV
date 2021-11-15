@@ -64,7 +64,7 @@ public class ControladorCatProducto {
         System.out.println("Categoria Producto guardado con exito");
         attribute.addFlashAttribute("success", "Categoria Producto guardado con exito!");
         
-        return "redirect:/catProducto";
+        return "redirect:/catProducto/";
     }
     
     @GetMapping("/editarcatProducto/{idCatProducto}")
@@ -114,7 +114,7 @@ public class ControladorCatProducto {
         System.out.println("CatProducto eliminado con exito");
         attribute.addFlashAttribute("warning", "CatProducto eliminado con Exito!");
         
-        return "redirect:/catProducto";
+        return "redirect:/catProducto/";
     }
     
 }

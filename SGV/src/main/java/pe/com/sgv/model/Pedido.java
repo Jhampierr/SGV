@@ -24,13 +24,11 @@ public class Pedido implements Serializable {
     @NotEmpty
     private String hora;
     
-    @NotEmpty
+    @Column(name="direcion_pedido")
     private String direccionPedido;
     
-    @NotEmpty
     private Integer cantidad;
     
-    @NotEmpty
     private Double total;
     
     @NotEmpty
@@ -39,14 +37,20 @@ public class Pedido implements Serializable {
     @NotEmpty
     private String detalle;
     
-    @NotEmpty
+    @ManyToOne
+    @JoinColumn(name="cliente_id_cliente")
     private Cliente cliente;
         
-    @NotEmpty
+    @ManyToOne
+    @JoinColumn(name="empleado_id_empleado")
     private Empleado empleado;
     
+    @ManyToOne
+    @JoinColumn(name="producto_id_producto")
     private Producto producto;
     
+    @ManyToOne
+    @JoinColumn(name="oferta_id_oferta")
     private Oferta oferta;
     
     private String usuarioInsert;

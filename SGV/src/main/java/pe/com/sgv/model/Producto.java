@@ -33,7 +33,6 @@ public class Producto implements Serializable {
     @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProd;
     
-    
     @ManyToOne
     @JoinColumn(name="id_cat_producto")
     private CatProducto catProd;

@@ -16,6 +16,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica cual es el campo de la llave primaria de nuestra tabla en la BD
     private Long idCliente;
+    
     @NotEmpty
     private String dni;
     

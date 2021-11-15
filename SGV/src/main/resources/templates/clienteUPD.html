@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Cliente</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{cliente.formulario}]]</div>
+
+                    <br/>
+                    <form th:action="@{/guardarcliente}" method="post" th:object="${cliente}">
+                        <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+                        <br/>
+                        <label for="dni">[[#{cliente.dni}]]: </label>
+                        <input type="text" name="dni" th:field="*{dni}"/>
+                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
+                        <br/>
+                        <label for="nombre">[[#{cliente.nombre}]]: </label>
+                        <input type="text" name="nombre" th:field="*{nombre}"/>
+                        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
+                        <br/>
+                        <label for="apellido">[[#{cliente.apellido}]]: </label>
+                        <input type="text" name="apellido" th:field="*{apellido}"/>
+                        <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
+                        <br/>
+                        <label for="telefono">[[#{cliente.telefono}]]: </label>
+                        <input type="text" name="telefono" th:field="*{telefono}"/>
+                        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
+                        <br/>
+                        <label for="correo">[[#{cliente.correo}]]: </label>
+                        <input type="text" name="correo" th:field="*{correo}"/>
+                        <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error Correo</span>
+                        <br/>
+                        <label for="direccion">[[#{cliente.direccion}]]: </label>
+                        <input type="text" name="direccion" th:field="*{direccion}"/>
+                        <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error Direccion</span>
+                        
+                        <br/>
+                        <div class="button">
+                            <input type="submit" name="guardarcliente" th:value="#{accion.guardar}"/>
+                        </div>
+                    </form>
+                    <div class="button2">
+                        <a th:href="@{/cliente}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script>  
+    </body>
+</html>

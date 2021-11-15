@@ -1,4 +1,3 @@
-
 package pe.com.sgv.model;
 
 import java.io.Serializable;

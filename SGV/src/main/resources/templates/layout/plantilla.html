@@ -16,7 +16,7 @@
             <!-- BoxIcons CDN Link -->
             <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
             <!-- Mis Stilos -->
-            <link rel="stylesheet" href="css/main.css">
+            <link rel="stylesheet" href="/css/main.css">
         </tag>
     </head>
     <body>
@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/pedido}">
                                 <i class='bx bx-book-alt' ></i>
                                 <span class="links-name">Lista de Pedidos</span>
                             </a>
@@ -77,7 +77,13 @@
                                 <span class="links-name">Lista de Tipo Empleados</span>
                             </a>
                         </li>
-                        <li >
+                        <li>
+                            <a th:href="@{/cliente}">
+                                <i class='bx bxs-user' ></i>
+                                <span class="links-name">Lista de Clientes</span>
+                            </a>
+                        </li>
+                        <li>
                             <form method="POST" th:action="@{/logout}">
                                 <a href="#" onclick="this.parentNode.submit();" id='logout'> 
                                     <i class='bx bx-log-out-circle' ></i>
