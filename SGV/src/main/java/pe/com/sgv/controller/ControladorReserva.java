@@ -22,16 +22,21 @@ import pe.com.sgv.model.Empleado;
 import pe.com.sgv.model.Oferta;
 import pe.com.sgv.model.Pedido;
 import pe.com.sgv.model.Producto;
+import pe.com.sgv.model.Reserva;
 import pe.com.sgv.servicio.ClienteService;
 import pe.com.sgv.servicio.EmpleadoService;
 import pe.com.sgv.servicio.OfertaService;
 import pe.com.sgv.servicio.PedidoService;
 import pe.com.sgv.servicio.ProductoService;
+import pe.com.sgv.servicio.ReservaService;
 
 @Controller
 @Slf4j
-public class ControladorPedido {
+public class ControladorReserva {
 
+    @Autowired
+    private ReservaService reservaService;
+    
     @Autowired
     private PedidoService pedidoService;
 
@@ -47,51 +52,55 @@ public class ControladorPedido {
     @Autowired
     private OfertaService ofertaService;
 
-    @GetMapping("/pedido")
-    public String pedido(Model model) {
-        var pedido = pedidoService.listarPedido();
+    @GetMapping("/reserva")
+    public String reserva(Model model) {
+        var reserva = reservaService.listarReserva();
 
         log.info("Ejecutando el controlador Spring MVC");
-        model.addAttribute("pedido", pedido);
-        return "pedidoSEL";
+        model.addAttribute("reserva", reserva);
+        return "reservaSEL";
     }
     
-    @GetMapping("/dashpedido")
-    public String dashpedido(Model model) {
-        var pedido = pedidoService.listarPedido();
+    @GetMapping("/dashreserva")
+    public String dashreserva(Model model) {
+        var reserva = reservaService.listarReserva();
         
         log.info("Ejecutando el controlador Spring MVC");
-        model.addAttribute("pedido", pedido);
+        model.addAttribute("reserva", reserva);
         return "index";
     }
     
-    @GetMapping("/agregarpedido")
+    @GetMapping("/agregarreserva")
     public String agregar(Model model) {
-        Pedido pedido = new Pedido();
+        Reserva reserva = new Reserva();
+        List<Pedido> pedido = pedidoService.listarPedido();
         List<Cliente> cliente = clienteService.listarCliente();
         List<Empleado> empleado = empleadoService.listarEmpleado();
         List<Producto> producto = productoService.listarProducto();
         List<Oferta> oferta = ofertaService.listarOferta();
 
+        model.addAttribute("reserva", reserva);
         model.addAttribute("pedido", pedido);
         model.addAttribute("cliente", cliente);
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
 
-        return "pedidoUPD";
+        return "reservaUPD";
     }
 
-    @PostMapping("/guardarpedido")
-    public String guardar(@Valid @ModelAttribute Pedido pedido, BindingResult result,
+    @PostMapping("/guardarreserva")
+    public String guardar(@Valid @ModelAttribute Reserva reserva, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
-
+        
+        List<Pedido> pedido = pedidoService.listarPedido();
         List<Cliente> cliente = clienteService.listarCliente();
         List<Empleado> empleado = empleadoService.listarEmpleado();
         List<Producto> producto = productoService.listarProducto();
         List<Oferta> oferta = ofertaService.listarOferta();
 
         if (result.hasErrors()) {
+            model.addAttribute("reserva", reserva);
             model.addAttribute("pedido", pedido);
             model.addAttribute("cliente", cliente);
             model.addAttribute("empleado", empleado);
@@ -99,41 +108,23 @@ public class ControladorPedido {
             model.addAttribute("oferta", oferta);
             System.out.println("Existen errores en el formulario");
 
-            return "pedidoUPD";
+            return "reservaUPD";
 
         }
         
         String fechString = LocalDate.now().toString();
         String horaString = LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
-        pedido.setFechaUpdate(fechString + " " + horaString);
+        reserva.setFechaUpdate(fechString + " " + horaString);
         
-        pedido.setHostName(check.host().getHostName());
-        pedido.setIp(check.host().getHostAddress());
+        reserva.setHostName(check.host().getHostName());
+        reserva.setIp(check.host().getHostAddress());
         
-        Double p1 = pedido.getProducto().getPrecio();
-        Integer cp1 = pedido.getCantidadProducto();
-        
-        Double o1 = pedido.getOferta().getPrecioOferta();
-        Integer co1 = pedido.getCantidadOferta();
-        
-        if(cp1 == null && co1 == null){
-            pedido.setTotal(0D);
-        } else if(cp1 == null){
-            cp1 = 0;
-            pedido.setTotal(p1 + (co1 * o1));
-        } else if(co1 == null){
-            co1 = 0;
-            pedido.setTotal(( cp1 * p1) + o1);
-        }
-        else{
-            pedido.setTotal((cp1 * p1) + (co1 * o1));
-        }
                 
-        pedidoService.guardar(pedido);
-        System.out.println("Pedido guardado con exito");
-        attribute.addFlashAttribute("success", "Pedido guardado con exito!");
+        reservaService.guardar(reserva);
+        System.out.println("Reserva guardado con exito");
+        attribute.addFlashAttribute("success", "Reserva guardado con exito!");
 
-        return "redirect:/pedido/";
+        return "redirect:/reserva/";
     }
     /*
     @GetMapping("/detallepedido/{idPedido}")
@@ -158,62 +149,64 @@ public class ControladorPedido {
         return "pedidoDetalle";
     }*/
 
-    @GetMapping("/editarpedido/{idPedido}")
-    public String editar(@PathVariable("idPedido") Long idPedido,
+    @GetMapping("/editarreserva/{idReserva}")
+    public String editar(@PathVariable("idReserva") Long idReserva,
             Model model, RedirectAttributes attribute) {
 
-        Pedido pedido = null;
+        Reserva reserva = null;
 
-        if (idPedido > 0) {
-            pedido = pedidoService.encontrarPedido(idPedido);
-            if (pedido == null) {
-                System.out.println("Error: El ID del pedido no existe!");
-                attribute.addFlashAttribute("error", "ATENCION: El ID del pedido no existe!");
-                return "pedidoUPD";
+        if (idReserva > 0) {
+            reserva = reservaService.encontrarReserva(idReserva);
+            if (reserva == null) {
+                System.out.println("Error: El ID del reserva no existe!");
+                attribute.addFlashAttribute("error", "ATENCION: El ID del reserva no existe!");
+                return "reservaUPD";
             }
         } else {
-            System.out.println("Error: Error con el ID del Pedido");
-            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del pedido");
-            return "pedidoUPD";
+            System.out.println("Error: Error con el ID del Reserva");
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del reserva");
+            return "reservaUPD";
         }
-
+        
+        List<Pedido> pedido = pedidoService.listarPedido();
         List<Cliente> cliente = clienteService.listarCliente();
         List<Empleado> empleado = empleadoService.listarEmpleado();
         List<Producto> producto = productoService.listarProducto();
         List<Oferta> oferta = ofertaService.listarOferta();
 
+        model.addAttribute("reserva", reserva);
         model.addAttribute("pedido", pedido);
         model.addAttribute("cliente", cliente);
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
 
-        return "pedidoUPD";
+        return "reservaUPD";
     }
 
-    @GetMapping("/eliminarpedido/{idPedido}")
-    public String eliminar(@PathVariable("idPedido") Long idPedido,
+    @GetMapping("/eliminarreserva/{idReserva}")
+    public String eliminar(@PathVariable("idReserva") Long idReserva,
             RedirectAttributes attribute) {
 
-        Pedido pedido = null;
+        Reserva reserva = null;
 
-        if (idPedido > 0) {
-            pedido = pedidoService.encontrarPedido(idPedido);
-            if (pedido == null) {
-                System.out.println("Error: El ID del pedido no existe!");
-                attribute.addFlashAttribute("error", "ATENCION: El ID del pedido no existe!");
-                return "pedidoUPD";
+        if (idReserva > 0) {
+            reserva = reservaService.encontrarReserva(idReserva);
+            if (reserva == null) {
+                System.out.println("Error: El ID del reserva no existe!");
+                attribute.addFlashAttribute("error", "ATENCION: El ID del reserva no existe!");
+                return "reservaUPD";
             }
         } else {
-            System.out.println("Error: Error con el ID del Pedido");
-            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del pedido");
-            return "pedidoUPD";
+            System.out.println("Error: Error con el ID del Reserva");
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del reserva");
+            return "reservaUPD";
         }
 
-        pedidoService.eliminar(idPedido);
-        System.out.println("Pedido eliminado con exito");
-        attribute.addFlashAttribute("warning", "pedido eliminado con Exito!");
-        return "redirect:/pedido/";
+        reservaService.eliminar(idReserva);
+        System.out.println("Reserva eliminado con exito");
+        attribute.addFlashAttribute("warning", "reserva eliminado con Exito!");
+        return "redirect:/reserva/";
     }
 
 }

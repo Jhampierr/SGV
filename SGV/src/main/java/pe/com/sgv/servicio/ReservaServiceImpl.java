@@ -27,15 +27,14 @@ public class ReservaServiceImpl implements ReservaService{
     }
 
     @Override
-    @Transactional
-    public void eliminar(Reserva reserva) {
-        reservaDao.delete(reserva);
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public Reserva encontrarReserva(Reserva reserva) {
-        return reservaDao.findById(reserva.getIdReserva()).orElse(null);
+    public Reserva encontrarReserva(Long reserva) {
+        return reservaDao.findById(reserva).orElse(null);
     }
     
+    @Override
+    @Transactional
+    public void eliminar(Long reserva) {
+        reservaDao.deleteById(reserva);
+    }
 }

@@ -292,14 +292,14 @@ nav .search-box .bx-search{
 .home-section .sales-boxes{
     display: flex;
     justify-content: space-between;
-    padding:20px;
+    padding:80px;
 }
 /* ===== * Left side * ===== */
 .home-section .sales-boxes .recent-sales{
-    width: 100%;
+    width: auto;
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-    padding:20px;
+    padding: 20px;
     border-radius: 6px;
 }
 table {
@@ -462,7 +462,7 @@ table tr td .btn-detail:hover{
 @media screen and (max-width: 1078px){
     .home-section .sales-boxes{
         flex-direction: column;
-        padding: 20px
+        padding: 80px
     }
     .home-section .sales-boxes .box{
         width: 100% !important;

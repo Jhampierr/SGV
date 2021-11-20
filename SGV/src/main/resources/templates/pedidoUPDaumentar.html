@@ -20,7 +20,7 @@
                         <input type="hidden" name="idPedido" th:field="*{idPedido}"/>
                         <br/>
                         <label for="numero">[[#{pedido.numero}]]: </label>
-                        <input  name="numero" th:field="*{numero}"/>
+                        <input type="number" name="numero" th:field="*{numero}"/>
                         <span th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}">Error numero</span>
                         <br/>
                         <label for="fecha">[[#{pedido.fecha}]]: </label>
@@ -83,6 +83,10 @@
                         <label for="cantidadOferta">[[#{pedido.cantidadOferta}]]: </label>
                         <input name="cantidadOferta" th:field="*{cantidadOferta}"/>
                         <span th:if="${#fields.hasErrors('cantidadOferta')}" th:errors="*{cantidadOferta}">Error cantidadOferta</span>
+                        <br/>
+                        <div class="button">
+                            <input type="submit" name="guardarpedido" th:value="#{accion.aumentar}"/>
+                        </div>
                         <br/>
                         <br/>
                         <input type="hidden" name="total" th:field="*{total}"/>

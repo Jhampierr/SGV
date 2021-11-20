@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Reserva</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{reserva.formulario}]]</div>
+
+                    <br/>
+                    <form th:action="@{/guardarreserva}" method="post" th:object="${reserva}">
+                        <input type="hidden" name="idReserva" th:field="*{idReserva}"/>
+                        <br/>
+                        <label for="mesa">[[#{reserva.mesa}]]: </label>
+                        <input  name="mesa" th:field="*{mesa}"/>
+                        <span th:if="${#fields.hasErrors('mesa')}" th:errors="*{mesa}">Error mesa</span>
+                        <br/>
+                        <label for="pedido">[[#{reserva.pedido}]]: </label>
+                        <select name="pedido" th:field="*{pedido}">
+                            <option th:each="pedido:${pedido}"
+                                    
+                                    th:value="${pedido.idPedido}"
+                                    th:text="${pedido.numero}"		
+                                    />
+                        </select>
+                        <span th:if="${#fields.hasErrors('pedido')}" th:errors="*{pedido}">Error pedido</span>
+                        <br/>
+                        
+                        <div class="button">
+                            <input type="submit" name="guardarreserva" th:value="#{accion.guardar}"/>
+                        </div>
+                    </form>
+                    <div class="button2">
+                        <a th:href="@{/reserva}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script>  
+    </body>
+</html>

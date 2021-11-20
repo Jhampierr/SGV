@@ -17,12 +17,14 @@ public class PedidoServiceImpl implements PedidoService{
     @Override
     @Transactional(readOnly = true)
     public List<Pedido> listarPedido() {
+        
         return (List<Pedido>) pedidoDao.findAll();
     }
 
     @Override
     @Transactional
     public void guardar(Pedido pedido) {
+        
         pedidoDao.save(pedido);
     }
     
