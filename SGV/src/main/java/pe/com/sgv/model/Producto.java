@@ -21,28 +21,26 @@ public class Producto implements Serializable {
     @NotEmpty
     private String nombre;  
     
-    @NotEmpty
     private Double precio;
     
     @NotEmpty
     private String detalle; 
     
-    @NotEmpty
+    //@Column(name="foto")
+    private String imagen;
+    
+    @ManyToOne
+    @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProd;
     
-    @NotEmpty
+    @ManyToOne
+    @JoinColumn(name="id_cat_producto")
     private CatProducto catProd;
     
     private String usuarioInsert;
-    
     private String fechaInsert;
-    
     private String usuarioUpdate;
-    
     private String fechaUpdate;
-    
-    private String usuarioDelete;
-    
-    private String fechaDelete;  
-    
+    private String hostName;
+    private String ip;
 }

@@ -21,7 +21,6 @@ public class Oferta implements Serializable {
     @NotEmpty
     private String detalle; 
     
-    @NotEmpty
     private Double precioOferta;
     
     @NotEmpty
@@ -31,18 +30,16 @@ public class Oferta implements Serializable {
     private String fechaFinal;
     
     @NotEmpty
-    private Producto producto;
+    private String estado;
+    
+    @ManyToOne
+    @JoinColumn(name="id_producto")
+    private Producto idProducto;
     
     private String usuarioInsert;
-    
     private String fechaInsert;
-    
     private String usuarioUpdate;
-    
     private String fechaUpdate;
-    
-    private String usuarioDelete;
-    
-    private String fechaDelete;  
-    
+    private String hostName;
+    private String ip;
 }

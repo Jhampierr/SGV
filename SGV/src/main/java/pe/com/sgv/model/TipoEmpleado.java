@@ -21,14 +21,9 @@ public class TipoEmpleado implements Serializable{
     private String descripcion;  
     
     private String usuarioInsert;
-    
     private String fechaInsert;
-    
     private String usuarioUpdate;
-    
     private String fechaUpdate;
-    
-    private String usuarioDelete;
-    
-    private String fechaDelete;
+    private String hostName;
+    private String ip;
 }

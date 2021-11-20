@@ -17,6 +17,8 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica cual es el campo de la llave primaria de nuestra tabla en la BD
     private Long idPedido;
+        
+    private Integer numero;
     
     @NotEmpty
     private String fecha;
@@ -24,13 +26,16 @@ public class Pedido implements Serializable {
     @NotEmpty
     private String hora;
     
-    @NotEmpty
+    @Column(name="direcion_pedido")
     private String direccionPedido;
     
-    @NotEmpty
-    private Integer cantidad;
+    @Column(name="cantidad_producto")
+    private Integer cantidadProducto;
     
-    @NotEmpty
+    
+    @Column(name="cantidad_oferta")
+    private Integer cantidadOferta;
+    
     private Double total;
     
     @NotEmpty
@@ -39,26 +44,26 @@ public class Pedido implements Serializable {
     @NotEmpty
     private String detalle;
     
-    @NotEmpty
+    @ManyToOne
+    @JoinColumn(name="cliente_id_cliente")
     private Cliente cliente;
         
-    @NotEmpty
+    @ManyToOne
+    @JoinColumn(name="empleado_id_empleado")
     private Empleado empleado;
     
+    @ManyToOne
+    @JoinColumn(name="producto_id_producto")
     private Producto producto;
     
+    @ManyToOne
+    @JoinColumn(name="oferta_id_oferta")
     private Oferta oferta;
     
     private String usuarioInsert;
-    
     private String fechaInsert;
-    
     private String usuarioUpdate;
-    
     private String fechaUpdate;
-    
-    private String usuarioDelete;
-    
-    private String fechaDelete;  
-    
+    private String hostName;
+    private String ip;
 }
