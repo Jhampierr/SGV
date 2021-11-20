@@ -36,7 +36,7 @@
                         <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
                         <br/>
                         <label for="correo">[[#{empleado.correo}]]: </label>
-                        <input type="text" name="correo" th:field="*{correo}"/>
+                        <input type="email" name="correo" th:field="*{correo}"/>
                         <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error Correo</span>
                         <br/>
                         <label for="direccion">[[#{empleado.direccion}]]: </label>

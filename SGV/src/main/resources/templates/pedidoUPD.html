@@ -20,7 +20,7 @@
                         <input type="hidden" name="idPedido" th:field="*{idPedido}"/>
                         <br/>
                         <label for="numero">[[#{pedido.numero}]]: </label>
-                        <input  name="numero" th:field="*{numero}"/>
+                        <input type="number" name="numero" th:field="*{numero}"/>
                         <span th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}">Error numero</span>
                         <br/>
                         <label for="fecha">[[#{pedido.fecha}]]: </label>
@@ -32,7 +32,7 @@
                         <span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}">Error hora</span>
                         <br/>
                         <label for="estado">[[#{pedido.estado}]]: </label>
-                        <input type="text" name="estado" th:field="*{estado}"/>
+                        <input ttype="text" pattern="[a-z]{4,10}" name="estado" th:field="*{estado}"/>
                         <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error estado</span>
                         <br/>
                         <label for="direccionPedido">[[#{pedido.direccionPedido}]]: </label>
@@ -68,7 +68,7 @@
                         <span th:if="${#fields.hasErrors('producto')}" th:errors="*{producto}">Error producto</span>
                         <br/>
                         <label for="cantidadProducto">[[#{pedido.cantidadProducto}]]: </label>
-                        <input name="cantidadProducto" th:field="*{cantidadProducto}"/>
+                        <input type="number" name="cantidadProducto" th:field="*{cantidadProducto}"/>
                         <span th:if="${#fields.hasErrors('cantidadProducto')}" th:errors="*{cantidadProducto}">Error cantidadProducto</span>
                         <br/>
                         <label for="oferta">[[#{pedido.oferta}]]: </label>
@@ -81,7 +81,7 @@
                         <span th:if="${#fields.hasErrors('oferta')}" th:errors="*{oferta}">Error oferta</span>
                         <br/>
                         <label for="cantidadOferta">[[#{pedido.cantidadOferta}]]: </label>
-                        <input name="cantidadOferta" th:field="*{cantidadOferta}"/>
+                        <input type="number" name="cantidadOferta" th:field="*{cantidadOferta}"/>
                         <span th:if="${#fields.hasErrors('cantidadOferta')}" th:errors="*{cantidadOferta}">Error cantidadOferta</span>
                         <br/>
                         <br/>

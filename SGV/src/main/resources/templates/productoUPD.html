@@ -29,7 +29,7 @@
                         <span th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}">Error Foto</span>   
                         <br/>
                         <label for="precio">[[#{producto.precio}]]: </label>
-                        <input name="precio" th:field="*{precio}"/>
+                        <input type="number" step="0.01" min="1" name="precio" th:field="*{precio}"/>
                         <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
                         <br/>
                         <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
@@ -51,7 +51,7 @@
                         <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
                         <br/>
                         <label for="detalle">[[#{producto.detalle}]]: </label>
-                        <input name="detalle" th:field="*{detalle}"/>
+                        <input name="detalle" required size="45" th:field="*{detalle}"/>
                         <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error Detalle</span>
                         <br/>
                         <div class="button">

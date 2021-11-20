@@ -20,6 +20,14 @@ public class Reserva implements Serializable {
     @NotEmpty
     private String mesa;
     
+    private Integer cantidad;
+    
+    @NotEmpty
+    private String fecha;
+    
+    @NotEmpty
+    private String hora;
+    
     @ManyToOne
     @JoinColumn(name="pedido_id_pedido")
     private Pedido pedido;

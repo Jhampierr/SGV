@@ -20,7 +20,7 @@
                         <input type="hidden" name="idReserva" th:field="*{idReserva}"/>
                         <br/>
                         <label for="mesa">[[#{reserva.mesa}]]: </label>
-                        <input  name="mesa" th:field="*{mesa}"/>
+                        <input type="number" name="mesa" th:field="*{mesa}"/>
                         <span th:if="${#fields.hasErrors('mesa')}" th:errors="*{mesa}">Error mesa</span>
                         <br/>
                         <label for="pedido">[[#{reserva.pedido}]]: </label>
@@ -32,6 +32,18 @@
                                     />
                         </select>
                         <span th:if="${#fields.hasErrors('pedido')}" th:errors="*{pedido}">Error pedido</span>
+                        <br/>
+                        <label for="cantidad">[[#{reserva.cantidad}]]: </label>
+                        <input type="number" name="cantidad" th:field="*{cantidad}"/>
+                        <span th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}">Error cantidad</span>
+                        <br/>
+                        <label for="fecha">[[#{reserva.fecha}]]: </label>
+                        <input type="date" name="fecha" th:field="*{fecha}"/>
+                        <span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}">Error fecha</span>
+                        <br/>
+                        <label for="hora">[[#{reserva.hora}]]: </label>
+                        <input type="time" name="hora" th:field="*{hora}"/>
+                        <span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}">Error hora</span>
                         <br/>
                         
                         <div class="button">
