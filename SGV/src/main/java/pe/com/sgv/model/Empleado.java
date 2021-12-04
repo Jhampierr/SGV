@@ -42,9 +42,6 @@ public class Empleado implements Serializable {
     @JoinColumn(name="id_tipo_empleado")
     private TipoEmpleado tipoEmp;
     
-    private String usuarioInsert;
-    private String fechaInsert;
-    private String usuarioUpdate;
     private String fechaUpdate;
     private String hostName;
     private String ip;   

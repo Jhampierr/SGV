@@ -35,9 +35,6 @@ public class Cliente implements Serializable {
     @NotEmpty
     private String direccion;
     
-    private String usuarioInsert;
-    private String fechaInsert;
-    private String usuarioUpdate;
     private String fechaUpdate;
     private String hostName;
     private String ip;

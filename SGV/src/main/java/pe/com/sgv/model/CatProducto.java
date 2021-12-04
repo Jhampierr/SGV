@@ -20,9 +20,6 @@ public class CatProducto implements Serializable{
     @NotEmpty
     private String descripcion;  
     
-    private String usuarioInsert;
-    private String fechaInsert;
-    private String usuarioUpdate;
     private String fechaUpdate;
     private String hostName;
     private String ip;

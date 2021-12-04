@@ -60,9 +60,6 @@ public class Pedido implements Serializable {
     @JoinColumn(name="oferta_id_oferta")
     private Oferta oferta;
     
-    private String usuarioInsert;
-    private String fechaInsert;
-    private String usuarioUpdate;
     private String fechaUpdate;
     private String hostName;
     private String ip;
