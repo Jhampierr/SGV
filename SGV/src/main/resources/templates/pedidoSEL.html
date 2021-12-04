@@ -45,7 +45,7 @@
                                     <td th:text="${pedido.estado}">Mostrar Estado</td>
                                     <td th:text="${pedido.direccionPedido}">Mostrar Direccion de pedido</td>
                                     <td th:text="${pedido.empleado.nombre}">Mostrar nombre de Empleado</td>
-                                    <td th:text="${pedido.cliente.nombre}">Mostrar nombre de Cliente</td>
+                                    <td th:text="${pedido.cliente.nombre} + ' ' +${pedido.cliente.apellido}">Mostrar nombre de Cliente</td>
                                     
                                     <td th:text="${pedido.cantidadProducto}">Mostrar Cantidad de producto</td>
                                     <td th:text="${pedido.producto.nombre}">Mostrar nombre de Producto</td>

@@ -51,7 +51,7 @@
                         <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
                         <br/>
                         <label for="detalle">[[#{producto.detalle}]]: </label>
-                        <input name="detalle" required size="45" th:field="*{detalle}"/>
+                        <input type="text" size="45" name="detalle" th:field="*{detalle}"/>
                         <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error Detalle</span>
                         <br/>
                         <div class="button">

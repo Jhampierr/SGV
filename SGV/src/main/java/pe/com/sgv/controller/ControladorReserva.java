@@ -60,16 +60,7 @@ public class ControladorReserva {
         model.addAttribute("reserva", reserva);
         return "reservaSEL";
     }
-    
-    @GetMapping("/dashreserva")
-    public String dashreserva(Model model) {
-        var reserva = reservaService.listarReserva();
         
-        log.info("Ejecutando el controlador Spring MVC");
-        model.addAttribute("reserva", reserva);
-        return "index";
-    }
-    
     @GetMapping("/agregarreserva")
     public String agregar(Model model) {
         Reserva reserva = new Reserva();

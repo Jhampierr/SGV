@@ -20,7 +20,7 @@
                         <input type="hidden" name="idOferta" th:field="*{idOferta}"/>
                         <br/>
                         <label for="estado">[[#{oferta.estado}]]: </label>
-                        <input type="text" pattern="[a-z]{4,10}" name="estado" th:field="*{estado}"/>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="estado" th:field="*{estado}"/>
                         <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error estado</span>
                         <br/>
                         <label for="fechaInicio">[[#{oferta.fechaInicio}]]: </label>
@@ -45,7 +45,7 @@
                         <span th:if="${#fields.hasErrors('precioOferta')}" th:errors="*{precioOferta}">Error precioOferta</span>   
                         <br/>
                         <label for="detalle">[[#{oferta.detalle}]]: </label>
-                        <input type="text" pattern="[a-z]{4,100}" name="detalle" th:field="*{detalle}"/>
+                        <input type="text" size="45" name="detalle" th:field="*{detalle}"/>
                         <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error detalle</span>
                         <br/>
                         <div class="button">

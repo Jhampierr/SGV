@@ -50,18 +50,39 @@ public class ControladorPedido {
     @GetMapping("/pedido")
     public String pedido(Model model) {
         var pedido = pedidoService.listarPedido();
-
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("pedido", pedido);
+                
         return "pedidoSEL";
     }
-    
-    @GetMapping("/dashpedido")
-    public String dashpedido(Model model) {
-        var pedido = pedidoService.listarPedido();
         
+    @GetMapping("/dash")
+    public String dash(Model model) {
+        var pedido = pedidoService.listarPedido();
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("pedido", pedido);
+        
+        var ingresoDia = 0D;
+        var nuevo = 0;
+        var pendiente = 0;
+        var finalizado = 0;
+        for(var p: pedido){
+            if(p.getEstado().equals("Finalizado")){
+                ingresoDia += p.getTotal();
+                finalizado+=1;
+            }
+            if(p.getEstado().equals("Nuevo")){
+                nuevo+=1;
+            }
+            if(p.getEstado().equals("Pendiente")){
+                pendiente+=1;
+            }
+        }
+        model.addAttribute("ingresoDia", ingresoDia);
+        model.addAttribute("nuevo", nuevo);
+        model.addAttribute("pendiente", pendiente);
+        model.addAttribute("finalizado", finalizado);
+        
         return "index";
     }
     
@@ -135,28 +156,6 @@ public class ControladorPedido {
 
         return "redirect:/pedido/";
     }
-    /*
-    @GetMapping("/detallepedido/{idPedido}")
-    public String detalle(@PathVariable("idPedido") Long idPedido,
-            Model model, RedirectAttributes attribute) {
-
-        Pedido pedido = null;
-
-        if (idPedido > 0) {
-            pedido = pedidoService.encontrarPedido(idPedido);
-            if (pedido == null) {
-                attribute.addFlashAttribute("error", "ATENCION: El ID del pedido no existe!");
-                return "redirect:/pedido/";
-            }
-        } else {
-            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del pedido");
-            return "redirect:/pedido/";
-        }
-
-        model.addAttribute("pedido", pedido);
-
-        return "pedidoDetalle";
-    }*/
 
     @GetMapping("/editarpedido/{idPedido}")
     public String editar(@PathVariable("idPedido") Long idPedido,

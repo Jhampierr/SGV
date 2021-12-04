@@ -20,19 +20,19 @@
                         <input type="hidden" name="idEmpleado" th:field="*{idEmpleado}"/>
                         <br/>
                         <label for="dni">[[#{empleado.dni}]]: </label>
-                        <input type="text" name="dni" th:field="*{dni}"/>
+                        <input type="text"  pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" th:field="*{dni}"/>
                         <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
                         <br/>
                         <label for="nombre">[[#{empleado.nombre}]]: </label>
-                        <input type="text" name="nombre" th:field="*{nombre}"/>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="nombre" th:field="*{nombre}"/>
                         <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
                         <br/>
                         <label for="apellido">[[#{empleado.apellido}]]: </label>
-                        <input type="text" name="apellido" th:field="*{apellido}"/>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="apellido" th:field="*{apellido}"/>
                         <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
                         <br/>
                         <label for="telefono">[[#{empleado.telefono}]]: </label>
-                        <input type="text" name="telefono" th:field="*{telefono}"/>
+                        <input type="tel" minlength="9" maxlength="13" name="telefono" th:field="*{telefono}"/>
                         <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
                         <br/>
                         <label for="correo">[[#{empleado.correo}]]: </label>

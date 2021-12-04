@@ -32,7 +32,7 @@
                         <span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}">Error hora</span>
                         <br/>
                         <label for="estado">[[#{pedido.estado}]]: </label>
-                        <input ttype="text" pattern="[a-z]{4,10}" name="estado" th:field="*{estado}"/>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="estado" th:field="*{estado}"/>
                         <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error estado</span>
                         <br/>
                         <label for="direccionPedido">[[#{pedido.direccionPedido}]]: </label>
@@ -89,7 +89,7 @@
                         <span th:if="${#fields.hasErrors('total')}" th:errors="*{total}">Error total</span>
                         
                         <label for="detalle">[[#{pedido.detalle}]]: </label>
-                        <input type="text" name="detalle" th:field="*{detalle}"/>
+                        <input type="text" size="45" name="detalle" th:field="*{detalle}"/>
                         <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error detalle</span>
                         <br/>
                         

@@ -20,7 +20,7 @@
                         <input type="hidden" name="idTipoProducto" th:field="*{idTipoProducto}"/>
                         <br/>
                         <label for="descripcion">[[#{tipoProducto.descripcion}]]: </label>
-                        <input type="text" pattern="[a-z]{4,10}" name="descripcion" th:field="*{descripcion}"/>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="descripcion" th:field="*{descripcion}"/>
                         <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error descripcion</span>   
                         <br/>
                         <div class="button">
