@@ -43,13 +43,17 @@ public class ControladorProducto {
 
     @Autowired
     private CatProductoService catProductoService;
-
+    
+    String fechaString = LocalDate.now().toString();
+    
     @GetMapping("/producto")
     public String producto(Model model) {
         var producto = productoService.listarProducto();
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("producto", producto);
+        model.addAttribute("fechaString", fechaString);
+        
         return "productoSEL";
     }
 
@@ -62,6 +66,7 @@ public class ControladorProducto {
         model.addAttribute("producto", producto);
         model.addAttribute("tipoProd", tipoProd);
         model.addAttribute("catProd", catProd);
+        model.addAttribute("fechaString", fechaString);
 
         return "productoUPD";
     }
@@ -131,6 +136,7 @@ public class ControladorProducto {
         }
 
         model.addAttribute("producto", producto);
+        model.addAttribute("fechaString", fechaString);
         
         return "productoDetalle";
     }
@@ -160,6 +166,7 @@ public class ControladorProducto {
         model.addAttribute("producto", producto);
         model.addAttribute("tipoProd", tipoProd);
         model.addAttribute("catProd", catProd);
+        model.addAttribute("fechaString", fechaString);
         
         return "productoUPD";
     }

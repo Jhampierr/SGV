@@ -1,4 +1,4 @@
-package pe.com.sgv.controller;
+    package pe.com.sgv.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -31,6 +31,8 @@ public class ControladorEmpleado {
 
     @Autowired
     private TipoEmpleadoService tipoEmpService;
+    
+    String fechaString = LocalDate.now().toString();
 
     @GetMapping("/empleado")
     public String empleado(Model model) {
@@ -38,6 +40,8 @@ public class ControladorEmpleado {
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("empleado", empleado);
+        model.addAttribute("fechaString", fechaString);
+        
         return "empleadoSEL";
     }
 
@@ -48,7 +52,8 @@ public class ControladorEmpleado {
 
         model.addAttribute("empleado", empleado);
         model.addAttribute("tipoEmp", tipoEmp);
-
+        model.addAttribute("fechaString", fechaString);
+        
         return "empleadoUPD";
     }
 
@@ -102,6 +107,8 @@ public class ControladorEmpleado {
 
         model.addAttribute("empleado", empleado);
         model.addAttribute("tipoEmp", tipoEmp);
+        model.addAttribute("fechaString", fechaString);
+        
         return "empleadoUPD";
     }
 

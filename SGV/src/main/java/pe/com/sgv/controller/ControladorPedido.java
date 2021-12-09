@@ -27,6 +27,7 @@ import pe.com.sgv.servicio.EmpleadoService;
 import pe.com.sgv.servicio.OfertaService;
 import pe.com.sgv.servicio.PedidoService;
 import pe.com.sgv.servicio.ProductoService;
+import pe.com.sgv.servicio.ReservaService;
 
 @Controller
 @Slf4j
@@ -47,45 +48,59 @@ public class ControladorPedido {
     @Autowired
     private OfertaService ofertaService;
 
+    @Autowired
+    private ReservaService reservaService;
+
+    String fechaString = LocalDate.now().toString();
+
     @GetMapping("/pedido")
     public String pedido(Model model) {
         var pedido = pedidoService.listarPedido();
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("pedido", pedido);
-                
+        model.addAttribute("fechaString", fechaString);
+
         return "pedidoSEL";
     }
-        
+
     @GetMapping("/dash")
     public String dash(Model model) {
         var pedido = pedidoService.listarPedido();
+        var producto = productoService.listarProducto();
+        var reserva = reservaService.listarReserva();
+
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("pedido", pedido);
-        
+        model.addAttribute("producto", producto);
+        model.addAttribute("reserva", reserva);
+
         var ingresoDia = 0D;
         var nuevo = 0;
         var pendiente = 0;
         var finalizado = 0;
-        for(var p: pedido){
-            if(p.getEstado().equals("Finalizado")){
-                ingresoDia += p.getTotal();
-                finalizado+=1;
-            }
-            if(p.getEstado().equals("Nuevo")){
-                nuevo+=1;
-            }
-            if(p.getEstado().equals("Pendiente")){
-                pendiente+=1;
+        for (var p : pedido) {
+            if (p.getFecha().equals(fechaString)) {
+                if (p.getEstado().equals("Finalizado")) {
+                    ingresoDia += p.getTotal();
+                    finalizado += 1;
+                }
+                if (p.getEstado().equals("Nuevo")) {
+                    nuevo += 1;
+                }
+                if (p.getEstado().equals("Pendiente")) {
+                    pendiente += 1;
+                }
             }
         }
         model.addAttribute("ingresoDia", ingresoDia);
         model.addAttribute("nuevo", nuevo);
         model.addAttribute("pendiente", pendiente);
         model.addAttribute("finalizado", finalizado);
-        
+        model.addAttribute("fechaString", fechaString);
+
         return "index";
     }
-    
+
     @GetMapping("/agregarpedido")
     public String agregar(Model model) {
         Pedido pedido = new Pedido();
@@ -99,6 +114,7 @@ public class ControladorPedido {
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
+        model.addAttribute("fechaString", fechaString);
 
         return "pedidoUPD";
     }
@@ -123,33 +139,32 @@ public class ControladorPedido {
             return "pedidoUPD";
 
         }
-        
+
         String fechString = LocalDate.now().toString();
         String horaString = LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
         pedido.setFechaUpdate(fechString + " " + horaString);
-        
+
         pedido.setHostName(check.host().getHostName());
         pedido.setIp(check.host().getHostAddress());
-        
+
         Double p1 = pedido.getProducto().getPrecio();
         Integer cp1 = pedido.getCantidadProducto();
-        
+
         Double o1 = pedido.getOferta().getPrecioOferta();
         Integer co1 = pedido.getCantidadOferta();
-        
-        if(cp1 == null && co1 == null){
+
+        if (cp1 == null && co1 == null) {
             pedido.setTotal(0D);
-        } else if(cp1 == null){
+        } else if (cp1 == null) {
             cp1 = 0;
             pedido.setTotal(p1 + (co1 * o1));
-        } else if(co1 == null){
+        } else if (co1 == null) {
             co1 = 0;
-            pedido.setTotal(( cp1 * p1) + o1);
-        }
-        else{
+            pedido.setTotal((cp1 * p1) + o1);
+        } else {
             pedido.setTotal((cp1 * p1) + (co1 * o1));
         }
-                
+
         pedidoService.guardar(pedido);
         System.out.println("Pedido guardado con exito");
         attribute.addFlashAttribute("success", "Pedido guardado con exito!");
@@ -186,6 +201,7 @@ public class ControladorPedido {
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
+        model.addAttribute("fechaString", fechaString);
 
         return "pedidoUPD";
     }

@@ -31,6 +31,8 @@ public class ControladorOferta {
 
     @Autowired
     private ProductoService productoService;
+    
+    String fechaString = LocalDate.now().toString();
 
     @GetMapping("/oferta")
     public String oferta(Model model) {
@@ -38,6 +40,8 @@ public class ControladorOferta {
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("oferta", oferta);
+        model.addAttribute("fechaString", fechaString);
+        
         return "ofertaSEL";
     }
 
@@ -48,6 +52,8 @@ public class ControladorOferta {
 
         model.addAttribute("oferta", oferta);
         model.addAttribute("idProducto", idProducto);
+        model.addAttribute("fechaString", fechaString);
+        
         return "ofertaUPD";
     }
 
@@ -102,6 +108,8 @@ public class ControladorOferta {
 
         model.addAttribute("oferta", oferta);
         model.addAttribute("idProducto", idProducto);
+        model.addAttribute("fechaString", fechaString);
+        
         return "ofertaUPD";
     }
 

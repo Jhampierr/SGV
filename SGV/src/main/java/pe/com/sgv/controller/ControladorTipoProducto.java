@@ -27,12 +27,16 @@ public class ControladorTipoProducto {
     @Autowired
     private TipoProductoService tipoProductoService;
     
+    String fechaString = LocalDate.now().toString();
+    
     @GetMapping("/tipoProducto")
     public String tipoProducto(Model model){
         var tipoProducto = tipoProductoService.listarTipoProducto();
         
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("tipoProducto", tipoProducto);
+        model.addAttribute("fechaString", fechaString);
+        
         return "tipoProductoSEL";
     }
     
@@ -40,6 +44,7 @@ public class ControladorTipoProducto {
     public String agregartipoProducto(Model model){
         TipoProducto tipoProducto = new TipoProducto();
         model.addAttribute("tipoProducto", tipoProducto);
+        model.addAttribute("fechaString", fechaString);
         
         return "tipoProductoUPD";
     }
@@ -87,8 +92,11 @@ public class ControladorTipoProducto {
         }
         
        model.addAttribute("tipoProducto", tipoProducto);
+       model.addAttribute("fechaString", fechaString);
+       
        return "tipoProductoUPD";
     }
+    
     @GetMapping("/eliminartipoProducto/{idTipoProducto}")
     public String eliminartipoProducto(@PathVariable("idTipoProducto") Long idTipoProducto, 
             RedirectAttributes attribute){

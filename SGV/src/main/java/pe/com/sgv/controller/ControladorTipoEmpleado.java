@@ -26,12 +26,16 @@ public class ControladorTipoEmpleado {
     @Autowired
     private TipoEmpleadoService tipoEmpleadoService;
     
+    String fechaString = LocalDate.now().toString();
+    
     @GetMapping("/tipoEmpleado")
     public String tipoEmpleado(Model model) {
         var tipoEmpleado = tipoEmpleadoService.listarTipoEmpleado();
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("tipoEmpleado", tipoEmpleado);
+        model.addAttribute("fechaString", fechaString);
+        
         return "tipoEmpleadoSEL";
     }
 
@@ -39,6 +43,7 @@ public class ControladorTipoEmpleado {
     public String agregartipoEmpleado(Model model) {
         TipoEmpleado tipoEmpleado = new TipoEmpleado();
         model.addAttribute("tipoEmpleado", tipoEmpleado);
+        model.addAttribute("fechaString", fechaString);
         
         return "tipoEmpleadoUPD";
     }
@@ -87,6 +92,8 @@ public class ControladorTipoEmpleado {
         }
         
           model.addAttribute("tipoEmpleado", tipoEmpleado);
+          model.addAttribute("fechaString", fechaString);
+          
         return "tipoEmpleadoUPD";
     }
 

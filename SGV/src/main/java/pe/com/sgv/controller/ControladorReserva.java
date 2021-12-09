@@ -51,6 +51,8 @@ public class ControladorReserva {
 
     @Autowired
     private OfertaService ofertaService;
+    
+    String fechaString = LocalDate.now().toString();
 
     @GetMapping("/reserva")
     public String reserva(Model model) {
@@ -58,6 +60,8 @@ public class ControladorReserva {
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("reserva", reserva);
+        model.addAttribute("fechaString", fechaString);
+        
         return "reservaSEL";
     }
         
@@ -76,6 +80,7 @@ public class ControladorReserva {
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
+        model.addAttribute("fechaString", fechaString);
 
         return "reservaUPD";
     }
@@ -171,6 +176,7 @@ public class ControladorReserva {
         model.addAttribute("empleado", empleado);
         model.addAttribute("producto", producto);
         model.addAttribute("oferta", oferta);
+        model.addAttribute("fechaString", fechaString);
 
         return "reservaUPD";
     }

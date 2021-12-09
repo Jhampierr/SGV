@@ -26,12 +26,16 @@ public class ControladorCliente {
     @Autowired
     private ClienteService clienteService;
     
+    String fechaString = LocalDate.now().toString();
+    
     @GetMapping("/cliente")
     public String cliente(Model model) {
         var cliente = clienteService.listarCliente();
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("cliente", cliente);
+        model.addAttribute("fechaString", fechaString);
+        
         return "clienteSEL";
     }
 
@@ -39,6 +43,7 @@ public class ControladorCliente {
     public String agregarcliente(Model model) {
         Cliente cliente = new Cliente();
         model.addAttribute("cliente", cliente);
+        model.addAttribute("fechaString", fechaString);
         
         return "clienteUPD";
     }
@@ -87,6 +92,8 @@ public class ControladorCliente {
         }
         
           model.addAttribute("cliente", cliente);
+          model.addAttribute("fechaString", fechaString);
+          
         return "clienteUPD";
     }
 

@@ -104,9 +104,12 @@
             
             <!--=========================== INICIA HOME - NAV ===========================-->
             <nav th:fragment="nav">
+                <div>
+                    <i class='bx bx-calendar-event'></i>
+                    <span>[[${fechaString}]]</span>
+                </div>
                 <div class="profile-details">
                     <div class="admin-box">
-
                         <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
                         <img src="../img/profile-img.jpg" alt="Admin Img">
                         <span sec:authentication="principal.authorities">Roles</span>
