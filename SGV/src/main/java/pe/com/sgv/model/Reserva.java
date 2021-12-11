@@ -17,7 +17,6 @@ public class Reserva implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica cual es el campo de la llave primaria de nuestra tabla en la BD
     private Long idReserva;
     
-    @NotEmpty
     private String mesa;
     
     private Integer cantidad;
@@ -29,8 +28,8 @@ public class Reserva implements Serializable {
     private String hora;
     
     @ManyToOne
-    @JoinColumn(name="pedido_id_pedido")
-    private Pedido pedido;
+    @JoinColumn(name="cliente_id_cliente")
+    private Cliente cliente;
     
     private String fechaUpdate;
     private String hostName;

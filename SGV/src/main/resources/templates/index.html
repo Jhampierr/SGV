@@ -87,7 +87,7 @@
                     <!--=========================== INICIO SALE - CONTENT ===========================-->
             <div class="sales-boxes">
                 <!-- Init Box Item Left side -->
-                <div class="recent-sales box">
+                <div class=" box">
                     <div class="title">Lista de Pedidos</div>
                     <div class="sales-details">
                         <table>
@@ -118,22 +118,24 @@
                     </div>
                 </div>
                 
-                <div class="recent-sales box">
+                <div class=" box">
                     <div class="title">Lista de Reservas</div>
                     <div class="sales-details">
                         <table>
                                 <tr>
+                                    <th>[[#{reserva.fecha}]]</th>
                                     <th>[[#{reserva.hora}]]</th>
-                                    <th>[[#{reserva.mesa}]]</th>
-                                    <th>[[#{reserva.pedido}]]</th>
-                                    <th>[[#{cliente.nombre}]]</th>
+                                    <th>Cliente</th>
+                                    <th>[[#{cliente.telefono}]]</th>
+                                    <th>[[#{reserva.cantidad}]]</th>
                                 </tr>
 
                                 <tr th:each="reserva : ${reserva}" th:if="${reserva.getFecha().equals(fechaString)}">
+                                    <td th:text="${reserva.fecha}">Mostrar Fecha</td>
                                     <td th:text="${reserva.hora}">Mostrar Hora</td>
-                                    <td th:text="${reserva.mesa}">Mostrar Numero</td>
-                                    <td th:text="${reserva.pedido.numero}">Mostrar nombre de Cliente</td>
-                                    <td th:text="${reserva.pedido.cliente.nombre} + ' ' +${reserva.pedido.cliente.apellido}">Mostrar Numero</td>
+                                    <td th:text="${reserva.cliente.nombre} + ' ' +${reserva.cliente.apellido}">Mostrar Numero</td>
+                                    <td th:text="${reserva.cliente.telefono}">Mostrar Telefono</td>
+                                    <td th:text="${reserva.cantidad}">Mostrar Cantidad</td>
                                     
                                 </tr>
                             </table>

@@ -1,6 +1,8 @@
 package pe.com.sgv.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,10 +11,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@RestController
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements ErrorController{
 
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -39,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/pedido/**", "/agregartipoEmpleado/**", "/eliminartipoEmpleado")
+                .antMatchers("/agregartipoEmpleado/**", "/editartipoEmpleado/**", "/eliminartipoEmpleado")
                 .hasAnyRole("ADMIN")
                 .antMatchers("/")
                 .hasAnyRole("USER", "ADMIN")
@@ -48,5 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .and()
                 .exceptionHandling().accessDeniedPage("/errores/403");
+                
     }
+    
+
+    
 }

@@ -12,3 +12,10 @@ btn.onclick = function () {
 logout.onclick = function () {
   sidebar.classList.toggle("active");
 };
+
+function confirmarC() {
+  alert("Bien!", "Se registro correctamente el cliente!");
+}
+function confirmarC() {
+  alert("Bien!", "Se registro correctamente el cliente!");
+}

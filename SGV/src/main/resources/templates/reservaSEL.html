@@ -20,9 +20,9 @@
                                 <tr>
                                     <th>[[#{reserva.fecha}]]</th>
                                     <th>[[#{reserva.hora}]]</th>
+                                    <th>Cliente</th>
+                                    <th>[[#{cliente.telefono}]]</th>
                                     <th>[[#{reserva.mesa}]]</th>
-                                    <th>[[#{reserva.pedido}]]</th>
-                                    <th>[[#{cliente.nombre}]]</th>
                                     <th>[[#{reserva.cantidad}]]</th>
                                     <th>[[#{accion.editar}]]</th>
                                     <th>[[#{accion.eliminar}]]</th>
@@ -31,9 +31,9 @@
                                 <tr th:each="reserva : ${reserva}">
                                     <td th:text="${reserva.fecha}">Mostrar Fecha</td>
                                     <td th:text="${reserva.hora}">Mostrar Hora</td>
-                                    <td th:text="${reserva.mesa}">Mostrar Numero</td>
-                                    <td th:text="${reserva.pedido.numero}">Mostrar nombre de Cliente</td>
-                                    <td th:text="${reserva.pedido.cliente.nombre} + ' ' +${reserva.pedido.cliente.apellido}">Mostrar Numero</td>
+                                    <td th:text="${reserva.cliente.nombre} + ' ' +${reserva.cliente.apellido}">Mostrar cliente</td>
+                                    <td th:text="${reserva.cliente.telefono}">Mostrar Telefono</td>
+                                    <td th:text="${reserva.mesa}">Mostrar mesa</td>
                                     <td th:text="${reserva.cantidad}">Mostrar Cantidad</td>
                                     
                                     <td><a th:href="@{/editarreserva/} + ${reserva.idReserva}"/>[[#{accion.editar}]]</td>

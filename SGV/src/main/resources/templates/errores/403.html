@@ -11,10 +11,12 @@ and open the template in the editor.
         <meta charset="UTF-8"/>
     </head>
     <body>
+        <h2>Error Page</h2>
+        <div>Status code: <b>403</b></div>
         <div>Acceso denegado.
             No tienes permiso para ver esta pagina o ejecutar esta accion
             <br/>
-            <a th:href="@{/}"> [[#{accion.regresar}]]</a>
+            <a th:href="@{/web}"> [[#{accion.regresar}]]</a>
         </div>
     </body>
 </html>

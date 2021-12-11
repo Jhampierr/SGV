@@ -68,12 +68,12 @@ public class ControladorPedido {
         var pedido = pedidoService.listarPedido();
         var producto = productoService.listarProducto();
         var reserva = reservaService.listarReserva();
-
+                
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("pedido", pedido);
         model.addAttribute("producto", producto);
         model.addAttribute("reserva", reserva);
-
+        
         var ingresoDia = 0D;
         var nuevo = 0;
         var pendiente = 0;

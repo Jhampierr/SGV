@@ -90,8 +90,14 @@
                             </a>
                         </li>
                         <li>
-                            <form method="POST" th:action="@{/logout}">
-                                <a href="#" onclick="this.parentNode.submit();" id='logout'> 
+                            <a th:href="@{/web}">
+                                <i class='bx bxs-user' ></i>
+                                <span class="links-name">Web Cliente</span>
+                            </a>
+                        </li>
+                        <li>
+                            <form method="POST" th:action="@{/logout}" th:href="@{/}">
+                                <a onclick="this.parentNode.submit();" id='logout'> 
                                     <i class='bx bx-log-out-circle' ></i>
                                     <span class="links-name">Logout</span>
                                 </a>
