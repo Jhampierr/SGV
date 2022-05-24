@@ -149,7 +149,7 @@ public class ControladorCli {
     @GetMapping("/error")
     public String handleError(HttpServletRequest request){
 
-            return "redirect:/";
+            return "redirect:/dash";
     }
 
 
